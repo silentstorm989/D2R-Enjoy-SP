@@ -3,78 +3,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   return;
 }
 
-// ExpandedCube
-{
-  const inventoryFilename = 'global\\excel\\inventory.txt';
-  const inventory = D2RMM.readTsv(inventoryFilename);
-  inventory.rows.forEach((row) => {
-    if (
-      row.class === 'Transmogrify Box Page 1' ||
-      row.class === 'Transmogrify Box2'
-    ) {
-      row.gridX = 6;
-    }
-  });
-  D2RMM.writeTsv(inventoryFilename, inventory);
-
-  const profileHDFilename = 'global\\ui\\layouts\\_profilehd.json';
-  const profileHD = D2RMM.readJson(profileHDFilename);
-  D2RMM.writeJson(profileHDFilename, profileHD);
-
-  const profileLVFilename = 'global\\ui\\layouts\\_profilelv.json';
-  const profileLV = D2RMM.readJson(profileLVFilename);
-  D2RMM.writeJson(profileLVFilename, profileLV);
-
-  const horadricCubeLayoutFilename =
-    'global\\ui\\layouts\\horadriccubelayout.json';
-  const horadricCubeLayout = D2RMM.readJson(horadricCubeLayoutFilename);
-  horadricCubeLayout.children.forEach((child) => {
-    if (child.name === 'grid') {
-      child.fields.cellCount.x = 6;
-      child.fields.cellCount.y = 4;
-      // TODO: shift left for new sprite
-      // one cell = 29px, add 1 column to left and 2 columns to right of original space
-      child.fields.rect.x = child.fields.rect.x - 29;
-    }
-    // TODO: new sprite
-  });
-  D2RMM.writeJson(horadricCubeLayoutFilename, horadricCubeLayout);
-
-  const horadricCubeLayoutHDFilename =
-    'global\\ui\\layouts\\horadriccubelayouthd.json';
-  const horadricCubeHDLayout = D2RMM.readJson(horadricCubeLayoutHDFilename);
-  horadricCubeHDLayout.children.forEach((child) => {
-    if (child.name === 'grid') {
-      child.fields.cellCount.x = 6;
-      child.fields.cellCount.y = 4;
-      child.fields.rect.x = child.fields.rect.x - 144;
-    }
-    if (child.name === 'background') {
-      child.fields.filename = 'PANEL\\Horadric_Cube\\HoradricCube_BG_Expanded';
-    }
-  });
-  D2RMM.writeJson(horadricCubeLayoutHDFilename, horadricCubeHDLayout);
-
-  const controllerHoradricCubeHDLayoutFilename =
-    'global\\ui\\layouts\\controller\\horadriccubelayouthd.json';
-  const controllerHoradricCubeHDLayout = D2RMM.readJson(
-    controllerHoradricCubeHDLayoutFilename
-  );
-  controllerHoradricCubeHDLayout.children.forEach((child) => {
-    if (child.name === 'grid') {
-      child.fields.rect.x = child.fields.rect.x - 142;
-    }
-    if (child.name === 'background') {
-      child.fields.filename =
-        'Controller/Panel/HoradricCube/V2/HoradricCubeBG_Expanded';
-    }
-  });
-  D2RMM.writeJson(
-    controllerHoradricCubeHDLayoutFilename,
-    controllerHoradricCubeHDLayout
-  );
-}
-
 // MercEquip
 {
   const inventoryFilename = 'global\\excel\\inventory.txt';
@@ -3705,6 +3633,151 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     });
     D2RMM.writeTsv(monStatsFilename, monStats);
   }
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation SetItems.txt
+{
+  const NameAndRarity = [
+    { name: "Civerb's Ward", rarity: 4, lvlreq: 9, },
+    { name: "Civerb's Icon", rarity: 4, lvlreq: 9, },
+    { name: "Civerb's Cudgel", rarity: 4, lvlreq: 9, },
+    { name: "Hsarus' Iron Heel", rarity: 4, lvlreq: 3, },
+    { name: "Hsarus' Iron Fist", rarity: 4, lvlreq: 3, },
+    { name: "Hsarus' Iron Stay", rarity: 4, lvlreq: 3, },
+    { name: "Cleglaw's Tooth", rarity: 4, lvlreq: 4, },
+    { name: "Cleglaw's Claw", rarity: 4, lvlreq: 4, },
+    { name: "Cleglaw's Pincers", rarity: 4, lvlreq: 4, },
+    { name: "Iratha's Collar", rarity: 4, lvlreq: 15, },
+    { name: "Iratha's Cuff", rarity: 4, lvlreq: 15, },
+    { name: "Iratha's Coil", rarity: 4, lvlreq: 15, },
+    { name: "Iratha's Cord", rarity: 4, lvlreq: 15, },
+    { name: "Isenhart's Lightbrand", rarity: 4, lvlreq: 8, },
+    { name: "Isenhart's Parry", rarity: 4, lvlreq: 8, },
+    { name: "Isenhart's Case", rarity: 4, lvlreq: 8, },
+    { name: "Isenhart's Horns", rarity: 4, lvlreq: 8, },
+    { name: "Vidala's Barb", rarity: 4, lvlreq: 14, },
+    { name: "Vidala's Fetlock", rarity: 4, lvlreq: 14, },
+    { name: "Vidala's Ambush", rarity: 4, lvlreq: 14, },
+    { name: "Vidala's Snare", rarity: 4, lvlreq: 14, },
+    { name: "Milabrega's Orb", rarity: 4, lvlreq: 17, },
+    { name: "Milabrega's Rod", rarity: 4, lvlreq: 17, },
+    { name: "Milabrega's Diadem", rarity: 4, lvlreq: 17, },
+    { name: "Milabrega's Robe", rarity: 4, lvlreq: 17, },
+    { name: "Cathan's Rule", rarity: 4, lvlreq: 11, },
+    { name: "Cathan's Mesh", rarity: 4, lvlreq: 11, },
+    { name: "Cathan's Visage", rarity: 4, lvlreq: 11, },
+    { name: "Cathan's Sigil", rarity: 4, lvlreq: 11, },
+    { name: "Cathan's Seal", rarity: 4, lvlreq: 11, },
+    { name: "Tancred's Crowbill", rarity: 4, lvlreq: 20, },
+    { name: "Tancred's Spine", rarity: 4, lvlreq: 20, },
+    { name: "Tancred's Hobnails", rarity: 4, lvlreq: 20, },
+    { name: "Tancred's Weird", rarity: 4, lvlreq: 20, },
+    { name: "Tancred's Skull", rarity: 4, lvlreq: 20, },
+    { name: "Sigon's Gage", rarity: 4, lvlreq: 6, },
+    { name: "Sigon's Visor", rarity: 4, lvlreq: 6, },
+    { name: "Sigon's Shelter", rarity: 4, lvlreq: 6, },
+    { name: "Sigon's Sabot", rarity: 4, lvlreq: 6, },
+    { name: "Sigon's Wrap", rarity: 4, lvlreq: 6, },
+    { name: "Sigon's Guard", rarity: 4, lvlreq: 6, },
+    { name: "Infernal Cranium", rarity: 4, lvlreq: 5, },
+    { name: "Infernal Torch", rarity: 4, lvlreq: 5, },
+    { name: "Infernal Sign", rarity: 4, lvlreq: 5, },
+    { name: "Berserker's Headgear", rarity: 4, lvlreq: 3, },
+    { name: "Berserker's Hauberk", rarity: 4, lvlreq: 3, },
+    { name: "Berserker's Hatchet", rarity: 4, lvlreq: 3, },
+    { name: "Death's Hand", rarity: 4, lvlreq: 6, },
+    { name: "Death's Guard", rarity: 4, lvlreq: 6, },
+    { name: "Death's Touch", rarity: 4, lvlreq: 6, },
+    { name: "Angelic Sickle", rarity: 4, lvlreq: 12, },
+    { name: "Angelic Mantle", rarity: 4, lvlreq: 12, },
+    { name: "Angelic Halo", rarity: 4, lvlreq: 12, },
+    { name: "Angelic Wings", rarity: 4, lvlreq: 12, },
+    { name: "Arctic Horn", rarity: 4, lvlreq: 2, },
+    { name: "Arctic Furs", rarity: 4, lvlreq: 2, },
+    { name: "Arctic Binding", rarity: 4, lvlreq: 2, },
+    { name: "Arctic Mitts", rarity: 4, lvlreq: 2, },
+    { name: "Arcanna's Sign", rarity: 4, lvlreq: 15, },
+    { name: "Arcanna's Deathwand", rarity: 4, lvlreq: 15, },
+    { name: "Arcanna's Head", rarity: 4, lvlreq: 15, },
+    { name: "Arcanna's Flesh", rarity: 4, lvlreq: 15, },
+    { name: "Natalya's Totem", rarity: 4, lvlreq: 59, },
+    { name: "Natalya's Mark", rarity: 4, lvlreq: 66, },
+    { name: "Natalya's Shadow", rarity: 4, lvlreq: 66, },
+    { name: "Natalya's Soul", rarity: 4, lvlreq: 25, },
+    { name: "Aldur's Stony Gaze", rarity: 4, lvlreq: 36, },
+    { name: "Aldur's Deception", rarity: 4, lvlreq: 66, },
+    { name: "Aldur's Gauntlet", rarity: 4, lvlreq: 42, },
+    { name: "Aldur's Advance", rarity: 4, lvlreq: 45, },
+    { name: "Immortal King's Will", rarity: 4, lvlreq: 47, },
+    { name: "Immortal King's Soul Cage", rarity: 4, lvlreq: 76, },
+    { name: "Immortal King's Detail", rarity: 4, lvlreq: 29, },
+    { name: "Immortal King's Forge", rarity: 4, lvlreq: 30, },
+    { name: "Immortal King's Pillar", rarity: 4, lvlreq: 31, },
+    { name: "Immortal King's Stone Crusher", rarity: 4, lvlreq: 66, },
+    { name: "Tal Rasha's Fire-Spun Cloth", rarity: 4, lvlreq: 53, },
+    { name: "Tal Rasha's Adjudication", rarity: 4, lvlreq: 67, },
+    { name: "Tal Rasha's Lidless Eye", rarity: 4, lvlreq: 65, },
+    { name: "Tal Rasha's Howling Wind", rarity: 4, lvlreq: 66, },
+    { name: "Tal Rasha's Horadric Crest", rarity: 4, lvlreq: 66, },
+    { name: "Griswold's Valor", rarity: 4, lvlreq: 66, },
+    { name: "Griswold's Heart", rarity: 4, lvlreq: 45, },
+    { name: "Griswolds's Redemption", rarity: 4, lvlreq: 53, },
+    { name: "Griswold's Honor", rarity: 4, lvlreq: 66, },
+    { name: "Trang-Oul's Guise", rarity: 4, lvlreq: 65, },
+    { name: "Trang-Oul's Scales", rarity: 4, lvlreq: 49, },
+    { name: "Trang-Oul's Wing", rarity: 4, lvlreq: 54, },
+    { name: "Trang-Oul's Claws", rarity: 4, lvlreq: 45, },
+    { name: "Trang-Oul's Girth", rarity: 4, lvlreq: 47, },
+    { name: "M'avina's True Sight", rarity: 4, lvlreq: 59, },
+    { name: "M'avina's Embrace", rarity: 4, lvlreq: 66, },
+    { name: "M'avina's Icy Clutch", rarity: 4, lvlreq: 32, },
+    { name: "M'avina's Tenet", rarity: 4, lvlreq: 45, },
+    { name: "M'avina's Caster", rarity: 4, lvlreq: 70, },
+    { name: "Telling of Beads", rarity: 4, lvlreq: 30, },
+    { name: "Laying of Hands", rarity: 4, lvlreq: 63, },
+    { name: "Rite of Passage", rarity: 4, lvlreq: 29, },
+    { name: "Spiritual Custodian", rarity: 4, lvlreq: 43, },
+    { name: "Credendum", rarity: 4, lvlreq: 65, },
+    { name: "Dangoon's Teaching", rarity: 4, lvlreq: 68, },
+    { name: "Heaven's Taebaek", rarity: 4, lvlreq: 67, },
+    { name: "Haemosu's Adament", rarity: 4, lvlreq: 44, },
+    { name: "Ondal's Almighty", rarity: 4, lvlreq: 69, },
+    { name: "Guillaume's Face", rarity: 4, lvlreq: 34, },
+    { name: "Wilhelm's Pride", rarity: 4, lvlreq: 42, },
+    { name: "Magnus' Skin", rarity: 4, lvlreq: 37, },
+    { name: "Wihtstan's Guard", rarity: 4, lvlreq: 29, },
+    { name: "Hwanin's Splendor", rarity: 4, lvlreq: 45, },
+    { name: "Hwanin's Refuge", rarity: 4, lvlreq: 30, },
+    { name: "Hwanin's Seal", rarity: 4, lvlreq: 35, },
+    { name: "Hwanin's Justice", rarity: 4, lvlreq: 28, },
+    { name: "Sazabi's Cobalt Redeemer", rarity: 4, lvlreq: 73, },
+    { name: "Sazabi's Ghost Liberator", rarity: 4, lvlreq: 67, },
+    { name: "Sazabi's Mental Sheath", rarity: 4, lvlreq: 43, },
+    { name: "Bul-Kathos' Sacred Charge", rarity: 4, lvlreq: 61, },
+    { name: "Bul-Kathos' Tribal Guardian", rarity: 4, lvlreq: 54, },
+    { name: "Cow King's Horns", rarity: 4, lvlreq: 25, },
+    { name: "Cow King's Hide", rarity: 4, lvlreq: 18, },
+    { name: "Cow King's Hoofs", rarity: 4, lvlreq: 13, },
+    { name: "Naj's Puzzler", rarity: 4, lvlreq: 78, },
+    { name: "Naj's Light Plate", rarity: 4, lvlreq: 71, },
+    { name: "Naj's Circlet", rarity: 4, lvlreq: 28, },
+    { name: "McAuley's Paragon", rarity: 3, lvlreq: 25, },
+    { name: "McAuley's Riprap", rarity: 4, lvlreq: 20, },
+    { name: "McAuley's Taboo", rarity: 4, lvlreq: 28, },
+    { name: "McAuley's Superstition", rarity: 4, lvlreq: 25, },
+  ];
+
+  const setItemsFilename = 'global\\excel\\setitems.txt';
+  const setItems = D2RMM.readTsv(setItemsFilename);
+  setItems.rows.forEach((row) => {
+    const theIndex  = row['index'];
+    const theSetItem = NameAndRarity.find(si => si.name === theIndex);
+    if (theSetItem) {
+      row['rarity'] = theSetItem.rarity;
+      row['lvl req'] = theSetItem.lvlreq;
+    }
+  });
+  D2RMM.writeTsv(setItemsFilename, setItems);
 }
 
 // D2SE_Enjoy-SP_Mod_1.7 implementation Shrines.txt'
