@@ -3,315 +3,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   return;
 }
 
-// ExpandedInventory
-{
-  const inventoryFilename = 'global\\excel\\inventory.txt';
-  const inventory = D2RMM.readTsv(inventoryFilename);
-  inventory.rows.forEach((row) => {
-    const id = row.class;
-    const classes = [
-      'Amazon',
-      'Assassin',
-      'Barbarian',
-      'Druid',
-      'Necromancer',
-      'Paladin',
-      'Sorceress',
-    ];
-    if (
-      classes.indexOf(id) !== -1 ||
-      classes.map((cls) => `${cls}2`).indexOf(id) !== -1
-    ) {
-      row.gridX = 13;
-      row.gridY = 8;
-    }
-  });
-  D2RMM.writeTsv(inventoryFilename, inventory);
-
-  const profileHDFilename = 'global\\ui\\layouts\\_profilehd.json';
-  const profileHD = D2RMM.readJson(profileHDFilename);
-  profileHD.RightPanelRect_ExpandedInventory = {
-    x: -1394 - (1382 - 1162),
-    y: -651,
-    width: 1382,
-    height: 1507,
-  };
-  profileHD.PanelClickCatcherRect_ExpandedInventory = {
-    x: 0,
-    y: 0,
-    width: 1162,
-    height: 1507,
-  };
-  // offset the right hinge so that it doesn't overlap with content of the right panel
-  profileHD.RightHingeRect = { x: 1076 + 20, y: 630 };
-  profileHD.RightHingeRect_ExpandedInventory = {
-    x: 1076 + (1382 - 1162) + 20,
-    y: 630,
-  };
-  D2RMM.writeJson(profileHDFilename, profileHD);
-
-  const profileLVFilename = 'global\\ui\\layouts\\_profilelv.json';
-  const profileLV = D2RMM.readJson(profileLVFilename);
-  profileLV.RightPanelRect_ExpandedInventory = {
-    x: -1346 - (1382 - 1162) * 1.16,
-    y: -856,
-    width: 1382,
-    height: 1507,
-    scale: 1.16,
-  };
-  D2RMM.writeJson(profileLVFilename, profileLV);
-
-  const playerInventoryOriginalLayoutFilename =
-    'global\\ui\\layouts\\playerinventoryoriginallayout.json';
-  const playerInventoryOriginalLayout = D2RMM.readJson(
-    playerInventoryOriginalLayoutFilename
-  );
-  // TODO: new sprite & layout for classic UI
-  playerInventoryOriginalLayout.children.forEach((child) => {
-    if (child.name === 'grid') {
-      child.fields.cellCount.x = 13;
-      child.fields.cellCount.y = 8;
-    }
-  });
-  D2RMM.writeJson(
-    playerInventoryOriginalLayoutFilename,
-    playerInventoryOriginalLayout
-  );
-
-  const playerInventoryOriginalLayoutHDFilename =
-    'global\\ui\\layouts\\playerinventoryoriginallayouthd.json';
-  const playerInventoryOriginalLayoutHD = D2RMM.readJson(
-    playerInventoryOriginalLayoutHDFilename
-  );
-  playerInventoryOriginalLayoutHD.fields.rect =
-    '$RightPanelRect_ExpandedInventory';
-  playerInventoryOriginalLayoutHD.children =
-    playerInventoryOriginalLayoutHD.children.filter((child) => {
-      if (child.name === 'background') {
-        child.fields.filename = 'PANEL\\Inventory\\Classic_Background_Expanded';
-      }
-      if (child.name === 'click_catcher') {
-        child.fields.rect = { x: 0, y: 45, width: 1093, height: 1495 };
-      }
-      if (child.name === 'RightHinge') {
-        child.fields.rect = '$RightHingeRect_ExpandedInventory';
-      }
-      if (child.name === 'title') {
-        child.fields.rect = {
-          x: 91 + (1382 - 1162) / 2,
-          y: 64,
-          width: 972,
-          height: 71,
-        };
-      }
-      if (child.name === 'close') {
-        child.fields.rect.x = child.fields.rect.x + (1382 - 1162);
-      }
-      if (child.name === 'grid') {
-        child.fields.cellCount.x = 13;
-        child.fields.cellCount.y = 8;
-        child.fields.rect.x = child.fields.rect.x - 37;
-        child.fields.rect.y = child.fields.rect.y - 229;
-      }
-      if (child.name === 'slot_right_arm') {
-        child.fields.rect.x = child.fields.rect.x - 14;
-        child.fields.rect.y = child.fields.rect.y + 12;
-      }
-      if (child.name === 'slot_left_arm') {
-        child.fields.rect.x = child.fields.rect.x + 227;
-        child.fields.rect.y = child.fields.rect.y + 12;
-      }
-      if (child.name === 'slot_torso') {
-        child.fields.rect.x = child.fields.rect.x + 101;
-        child.fields.rect.y = child.fields.rect.y - 229;
-      }
-      if (child.name === 'slot_head') {
-        child.fields.rect.x = child.fields.rect.x - 144;
-        child.fields.rect.y = child.fields.rect.y + 12;
-      }
-      if (child.name === 'slot_gloves') {
-        child.fields.rect.x = child.fields.rect.x + 231;
-        child.fields.rect.y = child.fields.rect.y - 233;
-      }
-      if (child.name === 'slot_feet') {
-        child.fields.rect.x = child.fields.rect.x - 26;
-        child.fields.rect.y = child.fields.rect.y - 231;
-      }
-      if (child.name === 'slot_belt') {
-        child.fields.rect.x = child.fields.rect.x + 101;
-        child.fields.rect.y = child.fields.rect.y - 234;
-      }
-      if (child.name === 'slot_neck') {
-        child.fields.rect.x = child.fields.rect.x + 99;
-        child.fields.rect.y = child.fields.rect.y - 182;
-      }
-      if (child.name === 'slot_right_hand') {
-        child.fields.rect.x = child.fields.rect.x + 474;
-        child.fields.rect.y = child.fields.rect.y - 466;
-      }
-      if (child.name === 'slot_left_hand') {
-        child.fields.rect.x = child.fields.rect.x + 232;
-        child.fields.rect.y = child.fields.rect.y - 466;
-      }
-      if (child.name === 'gold_amount' || child.name === 'gold_button') {
-        child.fields.rect.x = child.fields.rect.x - 291;
-        child.fields.rect.y = child.fields.rect.y - 1267;
-      }
-      return true;
-    });
-  D2RMM.writeJson(
-    playerInventoryOriginalLayoutHDFilename,
-    playerInventoryOriginalLayoutHD
-  );
-
-  const playerInventoryExpansionLayoutHDFilename =
-    'global\\ui\\layouts\\playerinventoryexpansionlayouthd.json';
-  const playerInventoryExpansionLayoutHD = D2RMM.readJson(
-    playerInventoryExpansionLayoutHDFilename
-  );
-  playerInventoryExpansionLayoutHD.children =
-    playerInventoryExpansionLayoutHD.children.filter((child) => {
-      if (child.name === 'click_catcher') {
-        // make click catcher work the same way as in the originallayouthd file
-        return false;
-      }
-      if (child.name === 'background') {
-        child.fields.filename = 'PANEL\\Inventory\\Background_Expanded';
-      }
-      if (
-        child.name === 'background_right_arm' ||
-        child.name === 'background_right_arm_selected' ||
-        child.name === 'weaponswap_right_arm' ||
-        child.name === 'text_i_left' ||
-        child.name === 'text_ii_left'
-      ) {
-        child.fields.rect.x = child.fields.rect.x - 14;
-        child.fields.rect.y = child.fields.rect.y + 12;
-      }
-      if (
-        child.name === 'background_left_arm' ||
-        child.name === 'background_left_arm_selected' ||
-        child.name === 'weaponswap_left_arm' ||
-        child.name === 'text_i_right' ||
-        child.name === 'text_ii_right'
-      ) {
-        child.fields.rect.x = child.fields.rect.x + 227;
-        child.fields.rect.y = child.fields.rect.y + 12;
-      }
-      return true;
-    });
-  D2RMM.writeJson(
-    playerInventoryExpansionLayoutHDFilename,
-    playerInventoryExpansionLayoutHD
-  );
-
-  const playerInventoryOriginalControllerLayoutHDFilename =
-    'global\\ui\\layouts\\controller\\playerinventoryoriginallayouthd.json';
-  const playerInventoryOriginalControllerLayoutHD = D2RMM.readJson(
-    playerInventoryOriginalControllerLayoutHDFilename
-  );
-  playerInventoryOriginalControllerLayoutHD.children.forEach((child) => {
-    if (child.name === 'background') {
-      child.fields.filename =
-        'Controller/Panel/InventoryPanel/V2/InventoryBG_Classic_Expanded';
-      child.fields.rect.x = child.fields.rect.x - 166;
-      child.fields.rect.y = child.fields.rect.y - 160;
-    }
-    if (child.name === 'grid') {
-      child.fields.rect.x = child.fields.rect.x - 132;
-      child.fields.rect.y = child.fields.rect.y - 344;
-    }
-    if (child.name === 'slot_right_arm') {
-      child.fields.rect.x = child.fields.rect.x - 99;
-      child.fields.rect.y = child.fields.rect.y - 60;
-    }
-    if (child.name === 'slot_left_arm') {
-      child.fields.rect.x = child.fields.rect.x + 123;
-      child.fields.rect.y = child.fields.rect.y - 62;
-    }
-    if (child.name === 'slot_torso') {
-      child.fields.rect.x = child.fields.rect.x + 6;
-      child.fields.rect.y = child.fields.rect.y - 199;
-    }
-    if (child.name === 'slot_head') {
-      child.fields.rect.x = child.fields.rect.x - 239;
-      child.fields.rect.y = child.fields.rect.y + 21;
-    }
-    if (child.name === 'slot_gloves') {
-      child.fields.rect.x = child.fields.rect.x + 146;
-      child.fields.rect.y = child.fields.rect.y - 282;
-    }
-    if (child.name === 'slot_feet') {
-      child.fields.rect.x = child.fields.rect.x - 130;
-      child.fields.rect.y = child.fields.rect.y - 281;
-    }
-    if (child.name === 'slot_belt') {
-      child.fields.rect.x = child.fields.rect.x + 7;
-      child.fields.rect.y = child.fields.rect.y - 185;
-    }
-    if (child.name === 'slot_neck') {
-      child.fields.rect.x = child.fields.rect.x - 3;
-      child.fields.rect.y = child.fields.rect.y - 167;
-    }
-    if (child.name === 'slot_right_hand') {
-      child.fields.rect.x = child.fields.rect.x + 389;
-      child.fields.rect.y = child.fields.rect.y - 417;
-    }
-    if (child.name === 'slot_left_hand') {
-      child.fields.rect.x = child.fields.rect.x + 126;
-      child.fields.rect.y = child.fields.rect.y - 417;
-    }
-    if (child.name === 'Belt') {
-      child.fields.rect.x = child.fields.rect.x + 15;
-      child.fields.rect.y = child.fields.rect.y + 595;
-    }
-    if (child.name === 'gold_amount' || child.name === 'gold_button') {
-      child.fields.rect.x = child.fields.rect.x - 464;
-      child.fields.rect.y = child.fields.rect.y + 20;
-    }
-  });
-  D2RMM.writeJson(
-    playerInventoryOriginalControllerLayoutHDFilename,
-    playerInventoryOriginalControllerLayoutHD
-  );
-
-  const playerInventoryExpansionControllerLayoutHDFilename =
-    'global\\ui\\layouts\\controller\\playerinventoryexpansionlayouthd.json';
-  const playerInventoryExpansionControllerLayoutHD = D2RMM.readJson(
-    playerInventoryExpansionControllerLayoutHDFilename
-  );
-  playerInventoryExpansionControllerLayoutHD.children.forEach((child) => {
-    if (child.name === 'background') {
-      child.fields.filename =
-        'Controller/Panel/InventoryPanel/V2/InventoryBG_Expanded';
-    }
-    if (
-      child.name === 'background_right_arm' ||
-      child.name === 'background_right_arm_selected' ||
-      child.name === 'WeaponSwapRightLegend' ||
-      child.name === 'text_i_left' ||
-      child.name === 'text_ii_left'
-    ) {
-      child.fields.rect.x = child.fields.rect.x - 99;
-      child.fields.rect.y = child.fields.rect.y - 60;
-    }
-    if (
-      child.name === 'background_left_arm' ||
-      child.name === 'background_left_arm_selected' ||
-      child.name === 'WeaponSwapLeftLegend' ||
-      child.name === 'text_i_right' ||
-      child.name === 'text_ii_right'
-    ) {
-      child.fields.rect.x = child.fields.rect.x + 123;
-      child.fields.rect.y = child.fields.rect.y - 62;
-    }
-  });
-  D2RMM.writeJson(
-    playerInventoryExpansionControllerLayoutHDFilename,
-    playerInventoryExpansionControllerLayoutHD
-  );
-}
-
 // ExpandedCube
 {
   const inventoryFilename = 'global\\excel\\inventory.txt';
@@ -2865,7 +2556,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeTsv(armorFilename, armor);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation cubemain.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation CubeMain.txt'
 // Removed the gems from the rune upgrade recipes. 
 // - Up until Pul: 3 of the same runes = next rune
 // - After Pul: 2 of a kind + jewel = next rune
@@ -3154,7 +2845,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeTsv(cubemainFilename, cubemain);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation cubemain.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation CubeMain.txt'
 // New recipes to add sockets to items via the Horadric Cube
 {
   const newRecipes = [
@@ -3657,49 +3348,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeTsv(cubemainFilename, cubemain);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation Misc.txt
-{
-  const miscFilename = 'global\\excel\\misc.txt';
-  const misc = D2RMM.readTsv(miscFilename);
-  misc.rows.forEach((row) => {
-    const theName = row['name'];
-    if (theName === 'Tome of Town Portal') {
-      row.maxstack = 50;
-    }
-    if (theName === 'Tome of Identify') {
-      row.maxstack = 50;
-    }
-    if (theName === 'Key of Destruction') {
-      row.compactsave = 1;
-      row.spawnable = 1;
-      row.cost = 6666;
-      row.PermStoreItem = 1;
-      row.multibuy = 1;
-      row.AkaraMin = 1;
-      row.AkaraMax = 1;
-    }
-    if (theName === 'Key of Terror') {
-      row.compactsave = 1;
-      row.spawnable = 1;
-      row.cost = 6666;
-      row.PermStoreItem = 1;
-      row.multibuy = 1;
-      row.AkaraMin = 1;
-      row.AkaraMax = 1;
-    }
-    if (theName === 'Key of Hate') {
-      row.compactsave = 1;
-      row.spawnable = 1;
-      row.cost = 6666;
-      row.PermStoreItem = 1;
-      row.multibuy = 1;
-      row.AkaraMin = 1;
-      row.AkaraMax = 1;
-    }
-  });
-  D2RMM.writeTsv(miscFilename, misc);
-}
-
 // D2SE_Enjoy-SP_Mod_1.7 implementation DifficultyLevels.txt'
 {
   const NameAndGamble = [
@@ -3777,7 +3425,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     const lvl = row['Level'];
     const theChangeExp = findExpRatioByLevel(lvl);
     if (theChangeExp > 0) {
-      console.log(`Changing level ${lvl} ExpRatio to ${theChangeExp}`);
       row['ExpRatio\r'] = theChangeExp.toString() + '\r';
     }
   });
@@ -3785,7 +3432,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeTsv(experienceFilename, experience);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation gamble.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation Gamble.txt'
 {
   const strArr = [
     { name: 'Wand', 'code\r': 'wnd\r' },
@@ -3846,38 +3493,240 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   }
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation shrines.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation ItemRatio.txt'
 {
+  const ItemRatios = [
+    { name: "Ratio - (Monster Level / Ratio Divisor)", version: 0, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 160, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 12, normal: 4, normalDiv: 8 },
+    { name: "Uber", version: 0, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 96, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 4, normal: 1, normalDiv: 8 },
+    { name: "Ratio - (Monster Level / Ratio Divisor)", version: 1, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 90, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 10, normal: 1, normalDiv: 1 },
+    { name: "Uber", version: 1, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 90, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 10, normal: 1, normalDiv: 1 },
+    { name: "Class Specific", version: 1, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 80, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 9, normal: 1, normalDiv: 2 },
+    { name: "Class Specific Uber", version: 1, unique: 180, uniqueDiv: 3, uniqueMin: 2400, rare: 80, rareDiv: 3, rareMin: 1200, set: 100, setDiv: 3, setMin: 600, highQuality: 9, normal: 1, normalDiv: 1 },
+  ];
+
+  const itemRatioFilename = 'global\\excel\\itemratio.txt';
+  const itemRatio = D2RMM.readTsv(itemRatioFilename);
+  itemRatio.rows.forEach((row) => {
+    const theName = row['Function'];
+    const theItemRatio = ItemRatios.find(ir => ir.name === theName && ir.version === parseInt(row['Version'], 10));
+    if (theItemRatio) {
+      row['Unique'] = theItemRatio.unique;
+      row['UniqueDivisor'] = theItemRatio.uniqueDiv;
+      row['UniqueMin'] = theItemRatio.uniqueMin;
+      row['Rare'] = theItemRatio.rare;
+      row['RareDivisor'] = theItemRatio.rareDiv;
+      row['RareMin'] = theItemRatio.rareMin;
+      row['Set'] = theItemRatio.set;
+      row['SetDivisor'] = theItemRatio.setDiv;
+      row['SetMin'] = theItemRatio.setMin;
+      row['HiQuality'] = theItemRatio.highQuality;
+      row['Normal'] = theItemRatio.normal;
+      row['NormalDivisor\r'] = theItemRatio.normalDiv;
+    }
+  });
+  D2RMM.writeTsv(itemRatioFilename, itemRatio);
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation Levels.txt'
+{
+  const skel1 = "skeleton1";
+  const levelsFilename = 'global\\excel\\levels.txt';
+  const levels = D2RMM.readTsv(levelsFilename);
+  levels.rows.forEach((row) => {
+    const theName = row['Name'];
+    if (theName === 'Act 1 - Wilderness 1') {
+      row['mon4'] = skel1;
+      row['nmon4'] = skel1;
+      row['umon4'] = skel1;
+    }
+  });
+  D2RMM.writeTsv(levelsFilename, levels);
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation Misc.txt
+{
+  const miscFilename = 'global\\excel\\misc.txt';
+  const misc = D2RMM.readTsv(miscFilename);
+  misc.rows.forEach((row) => {
+    const theName = row['name'];
+    if (theName === 'Tome of Town Portal') {
+      row.maxstack = 50;
+    }
+    if (theName === 'Tome of Identify') {
+      row.maxstack = 50;
+    }
+    if (theName === 'Key of Destruction') {
+      row.compactsave = 1;
+      row.spawnable = 1;
+      row.cost = 6666;
+      row.PermStoreItem = 1;
+      row.multibuy = 1;
+      row.AkaraMin = 1;
+      row.AkaraMax = 1;
+    }
+    if (theName === 'Key of Terror') {
+      row.compactsave = 1;
+      row.spawnable = 1;
+      row.cost = 6666;
+      row.PermStoreItem = 1;
+      row.multibuy = 1;
+      row.AkaraMin = 1;
+      row.AkaraMax = 1;
+    }
+    if (theName === 'Key of Hate') {
+      row.compactsave = 1;
+      row.spawnable = 1;
+      row.cost = 6666;
+      row.PermStoreItem = 1;
+      row.multibuy = 1;
+      row.AkaraMin = 1;
+      row.AkaraMax = 1;
+    }
+  });
+  D2RMM.writeTsv(miscFilename, misc);
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation MonStats.txt
+{
+  {
+    const monStatsFilename = 'global\\excel\\monstats.txt';
+    const monStats = D2RMM.readTsv(monStatsFilename);
+    monStats.rows.forEach((row) => {
+      const theID = row['Id'];
+      if (theID === 'ancientbarb1') {
+        row['Level'] = 47;
+      }
+      if (theID === 'ancientbarb2') {
+        row['Level'] = 47;
+      }
+      if (theID === 'ancientbarb3') {
+        row['Level'] = 47;
+      }
+      if (theID === 'andariel') {
+        row['Level'] = 21;
+        row['Level(N)'] = 60;
+        row['Level(H)'] = 90;
+      }
+      if (theID === 'baalhighpriest') {
+        row['Level'] = 35;
+        row['Level(N)'] = 60;
+      }
+      if (theID === 'bloodraven') {
+        row['Level(N)'] = 47;
+        row['Level(H)'] = 91;
+      }
+      if (theID === 'councilmember1') {
+        row['Level'] = 31;
+      }
+      if (theID === 'councilmember2') {
+        row['Level'] = 31;
+      }
+      if (theID === 'councilmember3') {
+        row['Level'] = 31;
+      }
+      if (theID === 'diablo') {
+        row['Level'] = 50;
+        row['Level(N)'] = 70;
+        row['Level(H)'] = 99;
+      }
+      if (theID === 'duriel') {
+        row['Level'] = 31;
+        row['Level(N)'] = 60;
+        row['Level(H)'] = 90;
+      }
+      if (theID === 'evilhole5') {
+        row['Level'] = 19;
+      }
+      if (theID === 'griswold') {
+        row['Level'] = 8;
+        row['Level(N)'] = 64;
+      }
+      if (theID === 'hephasto') {
+        row['Level'] = 39;
+      }
+      if (theID === 'izual') {
+        row['Level'] = 40;
+        row['Level(N)'] = 65;
+        row['Level(H)'] = 90;
+      }
+      if (theID === 'maggotqueen1') {
+        row['Level'] = 20;
+      }
+      if (theID === 'maggotqueen2') {
+        row['Level'] = 20;
+      }
+      if (theID === 'maggotqueen3') {
+        row['Level'] = 20;
+      }
+      if (theID === 'mephisto') {
+        row['Level'] = 41;
+        row['Level(N)'] = 70;
+        row['Level(H)'] = 90;
+      }
+      if (theID === 'navi') {
+        row['minHP'] = 4000;
+        row['maxHP'] = 4000;
+      }
+      if (theID === 'mephisto') {
+        row['Level'] = 57;
+        row['Level(H)'] = 99;
+      }
+      if (theID === 'overseer2') {
+        row['Level'] = 38;
+      }
+      if (theID === 'overseer3') {
+        row['Level'] = 38;
+      }
+      if (theID === 'overseer4') {
+        row['Level'] = 38;
+      }
+      if (theID === 'radament') {
+        row['Level'] = 38;
+      }
+      if (theID === 'reanimatedhorde6') {
+        row['Level(H)'] = 87;
+      }
+      if (theID === 'skeleton1') {
+        row['Level'] = 1;
+      }
+      if (theID === 'smith') {
+        row['Level'] = 14;
+        row['Level(N)'] = 45;
+      }
+      if (theID === 'snowyeti4') {
+        row['Level(H)'] = 150;
+      }
+      if (theID === 'summoner') {
+        row['Level'] = 27;
+      }
+      if (theID === 'thornhulk3') {
+        row['Level'] = 27;
+      }
+    });
+    D2RMM.writeTsv(monStatsFilename, monStats);
+  }
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation Shrines.txt'
+{
+  const ShrineDuration = [
+    { Name: "Armor Shrine", Duration: 4800 },
+    { Name: "Combat Shrine", Duration: 4800 },
+    { Name: "Resist Fire Shrine", Duration: 4800 },
+    { Name: "Resist Cold Shrine", Duration: 4800 },
+    { Name: "Resist Lightning Shrine", Duration: 4800 },
+    { Name: "Resist Poison Shrine", Duration: 4800 },
+    { Name: "Skill Shrine", Duration: 4800 },
+    { Name: "Mana Recharge Shrine", Duration: 4800 },
+    { Name: "Experience Shrine", Duration: 4600 },
+  ];
   const shrinesFilename = 'global\\excel\\shrines.txt';
   const shrines = D2RMM.readTsv(shrinesFilename);
   shrines.rows.forEach((row) => {
     const theName = row['Name'];
-    if (theName === 'Armor Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Combat Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Resist Fire Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Resist Cold Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Resist Lightning Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Resist Poison Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Skill Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Mana Recharge Shrine') {
-      row['Duration in frames'] = 4800;
-    }
-    if (theName === 'Experience Shrine') {
-      row['Duration in frames'] = 4800;
+    const theShrineDuration = ShrineDuration.find(sd => sd.Name === theName);
+    if (theShrineDuration) {
+      row['Duration in frames'] = theShrineDuration.Duration;
     }
   });
   D2RMM.writeTsv(shrinesFilename, shrines);
@@ -3898,7 +3747,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   //D2RMM.writeTsv(skillsFilename, skills);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation uniqueitems.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation Uniqueitems.txt'
 {
   const NameAndRarity = [
     { name: "The Gnasher", rarity: 1, nolimit: 1, level: 7, lvlReq: 5 },
@@ -4340,7 +4189,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeTsv(uniqueitemsFilename, uniqueitems);
 }
 
-// D2SE_Enjoy-SP_Mod_1.7 implementation weapons.txt'
+// D2SE_Enjoy-SP_Mod_1.7 implementation Weapons.txt'
 {
   const NameAndRarity = [
     { name: "Hand Axe", rarity: 1, level: 3 },
