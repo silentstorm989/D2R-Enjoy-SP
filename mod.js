@@ -854,1412 +854,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   D2RMM.writeJson(hirelingCHDFilename, hirelingCHD);
 }
 
-// Improved rune drop and general drop rate
-{
-  function SetDefaultQuestProp(row, setNoDrop) {
-    row.Unique = 1024;
-    row.Set = 800;
-    row.Rare = 800;
-    row.Magic = 800;
-    if (setNoDrop) {
-      row.NoDrop = 0;
-    }
-  }
-  function SetQuestProp(row, pOne) {
-    SetDefaultQuestProp(row, true);
-    row.Item1 = 'gld,mul=2000';
-    row.Prob1 = pOne;
-  }
-  const treasureclassexFilename = 'global\\excel\\treasureclassex.txt';
-  const treasureclassex = D2RMM.readTsv(treasureclassexFilename);
-  treasureclassex.rows.forEach((row) => {
-    const treasureClass = row['Treasure Class'];
-    // Improved rune drop
-    {
-      if (treasureClass === 'Runes 17') {
-        row.Prob1 = 3;
-        row.Prob2 = 16;
-      }
-      if (treasureClass === 'Runes 16') {
-        row.Prob3 = 15;
-        row.Prob4 = 7;
-      }
-      if (treasureClass === 'Runes 15') {
-        row.Prob3 = 14;
-        row.Prob4 = 7;
-      }
-      if (treasureClass === 'Runes 14') {
-        row.Prob3 = 13;
-        row.Prob4 = 8;
-      }
-      if (treasureClass === 'Runes 13') {
-        row.Prob3 = 12;
-        row.Prob4 = 8;
-      }
-      if (treasureClass === 'Runes 12') {
-        row.Prob3 = 11;
-        row.Prob4 = 4;
-      }
-      if (treasureClass === 'Runes 11') {
-        row.Prob3 = 10;
-      }
-      if (treasureClass === 'Runes 10') {
-        row.Prob3 = 9;
-      }
-      if (treasureClass === 'Runes 9') {
-        row.Prob3 = 8;
-      }
-      if (treasureClass === 'Runes 8') {
-        row.Prob3 = 7;
-      }
-      if (treasureClass === 'Runes 7') {
-        row.Prob3 = 6;
-      }
-      if (treasureClass === 'Runes 6') {
-        row.Prob3 = 5;
-      }
-      if (treasureClass === 'Runes 5') {
-        row.Prob3 = 4;
-      }
-      if (treasureClass === 'Runes 4') {
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Runes 3') {
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Runes 2') {
-        row.Prob3 = 3;
-      }
-    }
-
-    // Increased general drop rate from Bosses
-    {
-      if (treasureClass === 'Andariel') {
-        SetQuestProp(row, 5);
-        row.Prob2 = 15;
-        row.Item3 = 'Act 2 Equip C';
-        row.Prob3 = 5;
-        row.Item4 = 'rin';
-        row.Prob4 = 2;
-      }
-      if (treasureClass === 'Andariel (N)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=3536';
-        row.Prob1 = 5;
-        row.Prob2 = 19;
-        row.Item3 = 'Act 2 (N) Equip C';
-        row.Prob3 = 6;
-        row.Item4 = 'Act 2 (N) Good';
-        row.Prob4 = 3;
-      }
-      if (treasureClass === 'Andariel (H)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=4048';
-        row.Prob1 = 5;
-        row.Item3 = 'Act 2 (H) Equip C';
-        row.Prob3 = 7;
-        row.Prob4 = 5;
-        row.Prob5 = 0;
-      }
-      if (treasureClass === 'Andarielq') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Item2 = 'Act 2 Equip C';
-        row.Prob2 = 5;
-        row.Item3 = 'Act 2 Good';
-        row.Prob3 = 1;
-      }
-      if (treasureClass === 'Andarielq (N)') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Item2 = 'Act 2 (N) Good';
-        row.Prob2 = 1;
-        row.Item3 = 'Act 1 (N) Equip C';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Andarielq (H)') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Prob2 = 1;
-        row.Item3 = 'Act 1 (H) Equip C';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Baal') {
-        SetQuestProp(row, 0);
-        row.Item2 = 'Act 1 (N) Equip C';
-        row.Item3 = 'Act 1 (N) Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Baal (N)') {
-        SetQuestProp(row, 0);
-        row.Item1 = 'gld,mul=3536';
-        row.Item2 = 'Act 1 (H) Equip C';
-        row.Item3 = 'Act 1 (H) Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Baal (H)') {
-        SetQuestProp(row, 0);
-        row.Item1 = 'gld,mul=4048';
-        row.Item2 = 'Act 5 (H) Equip C';
-        row.Item3 = 'Act 5 (H) Good';
-        row.Prob3 = 3;
-        row.Item4 = 'fed';
-        row.Prob4 = 0;
-        row.Item5 = '';
-        row.Prob5 = '';
-      }
-      if (treasureClass === 'Baalq') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 25;
-      }
-      if (treasureClass === 'Baalq (N)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'Act 1 (H) Equip C';
-        row.Prob1 = 26;
-        row.Prob2 = 5;
-      }
-      if (treasureClass === 'Baalq (H)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'Act 5 (H) Equip C';
-        row.Prob1 = 26;
-        row.Prob2 = 5;
-        row.Prob3 = 0;
-        row.Item4 = 'uar'
-        row.Prob4 = 1;
-      }
-      if (treasureClass === 'Blood Raven') {
-        SetQuestProp(row, 6);
-        row.Item2 = 'Act 1 Equip A';
-        row.Prob2 = 14;
-        row.Item3 = 'Act 1 Good';
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Blood Raven (N)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=3536';
-        row.Prob1 = 6;
-        row.Item2 = 'Act 1 (N) Equip A';
-        row.Prob2 = 14;
-        row.Item3 = 'Act 1 (N) Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Blood Raven (H)') {
-        row.Unique = 1024;
-        row.Set = 850;
-        row.Rare = 850;
-        row.Magic = 800;
-        row.NoDrop = 0;
-        row.Item1 = 'gld,mul=4048';
-        row.Prob1 = 11;
-        row.Item2 = 'Act 1 (H) Equip A';
-        row.Prob2 = 33;
-        row.Item3 = '6lw';
-        row.Prob3 = 1;
-        row.Prob4 = 9;
-      }
-      if (treasureClass === 'Countess') {
-        row.Picks = 5;
-        row.Unique = 1024;
-        row.Magic = 800;
-        row.Prob1 = 0;
-        row.Prob2 = 5;
-        row.Item3 = 'Act 2 Good';
-        row.Prob3 = 1;
-      }
-      if (treasureClass === 'Countess (N)') {
-        row.Picks = 5;
-        row.Unique = 1024;
-        row.Magic = 800;
-        row.Prob1 = 0;
-        row.Prob2 = 5;
-        row.Item3 = 'Act 2 (N) Good';
-        row.Prob3 = 1;
-      }
-      if (treasureClass === 'Countess (H)') {
-        row.Picks = 5;
-        row.Unique = 1024;
-        row.Magic = 800;
-        row.Prob1 = 0;
-        row.Prob2 = 5;
-        row.Item3 = 'Act 2 (H) Good';
-        row.Prob3 = 1;
-        row.Item4 = 'pk1';
-        row.Prob4 = 1;
-      }
-      if (treasureClass === 'Countess Rune') {
-        row.Item1 = 'Runes 5';
-      }
-      if (treasureClass === 'Countess Rune (N)') {
-        row.Item1 = 'Runes 11';
-        row.Prob1 = 3;
-        row.Item2 = 'Runes 8';
-        row.Prob2 = 1;
-      }
-      if (treasureClass === 'Countess Rune (H)') {
-        row.Item1 = 'Runes 11';
-        row.Prob1 = 6;
-        row.Item2 = 'Runes 15';
-        row.Prob2 = 2;
-        row.Item3 = 'Runes 16';
-        row.Prob3 = 1;
-        row.Item4 = 'Runes 13';
-        row.Prob4 = 6;
-        row.Item5 = 'Runes 14';
-        row.Prob5 = 2;
-      }
-      if (treasureClass === 'Council') {
-        row.Unique = 999;
-        row.Set = 997;
-        row.Magic = 800;
-        row.NoDrop = 0;
-        row.Item1 = 'gld,mul=3280';
-        row.Prob1 = 6;
-        row.Item3 = 'Act 4 Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-        row.Item5 = '';
-        row.Prob5 = '';
-      }
-      if (treasureClass === 'Council (N)') {
-        row.Unique = 999;
-        row.Set = 997;
-        row.Magic = 800;
-        row.NoDrop = 0;
-        row.Item1 = 'gld,mul=4536';
-        row.Prob1 = 6;
-        row.Item3 = 'Act 4 (N) Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-        row.Item5 = '';
-        row.Prob5 = '';
-      }
-      if (treasureClass === 'Council (H)') {
-        row.Unique = 999;
-        row.Set = 997;
-        row.Magic = 800;
-        row.NoDrop = 0;
-        row.Item1 = 'gld,mul=5048';
-        row.Prob1 = 6;
-        row.Item3 = 'Act 4 (H) Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-        row.Item5 = '';
-        row.Prob5 = '';
-      }
-      if (treasureClass === 'Cow') {
-        row.Item3 = 'Act 5 Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Cow King') {
-        row.Picks = 7;
-      }
-      if (treasureClass === 'Diablo') {
-        SetQuestProp(row, 4);
-        row.Prob2 = 15;
-        row.Item3 = 'Act 5 Equip C';
-        row.Prob3 = 3;
-        row.Prob4 = 5;
-      }
-      if (treasureClass === 'Diabloq') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Prob2 = 1;
-        row.Item3 = 'Act 5 Equip C';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Duriel') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Duriel (N)') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Duriel (H)') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Duriel - Base') {
-        SetQuestProp(row, 11);
-        row.Item3 = 'Act 3 Equip A';
-        row.Prob3 = 3;
-        row.Prob4 = 2;
-      }
-      if (treasureClass === 'Duriel (N) - Base') {
-        SetQuestProp(row, 11);
-        row.Item1 = 'gld,mul=3536';
-        row.Item3 = 'Act 3 (N) Equip A';
-        row.Prob3 = 3;
-        row.Prob4 = 2;
-      }
-      if (treasureClass === 'Duriel (H) - Base') {
-        SetQuestProp(row, 11);
-        row.Item1 = 'gld,mul=4048';
-        row.Item3 = 'Act 3 (H) Equip A';
-        row.Prob3 = 3;
-        row.Prob4 = 2;
-        row.Prob5 = 0;
-      }
-      if (treasureClass === 'Durielq') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Durielq (N)') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Durielq (H)') {
-        row.Picks = 7;
-        row.Unique = 1024;
-        row.Prob1 = 0;
-      }
-      if (treasureClass === 'Durielq - Base') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Prob2 = 1;
-        row.Item3 = 'Act 3 Equip B';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Durielq (N) - Base') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Prob2 = 1;
-        row.Item3 = 'Act 3 (N) Equip B';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Durielq (H) - Base') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 44;
-        row.Prob2 = 3;
-        row.Item3 = 'Act 3 (H) Equip B';
-        row.Prob3 = 6;
-        row.Item4 = 'xrs';
-        row.Prob4 = 1;
-      }
-      if (treasureClass === 'Flying Scimitar') {
-        row.Unique = 999;
-        row.Set = 899;
-        row.Rare = 850;
-        row.Magic = 800;
-        row.NoDrop = 0;
-        row.Prob1 = 11;
-        row.Prob2 = 7;
-      }
-      if (treasureClass === 'Griswold') {
-        row.Picks = 4;
-        SetDefaultQuestProp(row, false);
-        row.Item1 = 'Act 2 Uitem C';
-        row.Prob1 = 8;
-        row.Item2 = 'Act 2 Melee A';
-        row.Prob2 = 15;
-        row.Item3 = 'bsd';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Griswold (N)') {
-        row.Picks = 4;
-        row.Unique = 999;
-        row.Set = 999;
-        row.Rare = 800;
-        row.Magic = 800;
-        row.Item1 = 'Act 1 (H) Uitem C';
-        row.Prob1 = 8;
-        row.Item2 = 'Act 1 (N) Melee B';
-        row.Prob2 = 15;
-      }
-      if (treasureClass === 'Haphesto') {
-        row.Picks = 4;
-        SetQuestProp(row, 5);
-        row.Item2 = 'Act 4 Equip A';
-        row.Item3 = 'Act 5 Good';
-        row.Prob3 = 4;
-        row.Prob4 = 2;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Izual') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=2280';
-        row.Prob1 = 8;
-        row.Item3 = 'Act 4 Good';
-        row.Prob3 = 8;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Mephisto') {
-        SetQuestProp(row, 4);
-        row.Prob2 = 15;
-        row.Item3 = 'Act 5 Equip A';
-        row.Prob3 = 3;
-        row.Prob4 = 5;
-      }
-      if (treasureClass === 'Mephistoq') {
-        SetDefaultQuestProp(row, true);
-        row.Prob1 = 22;
-        row.Prob2 = 1;
-        row.Item3 = 'Act 5 Equip A';
-        row.Prob3 = 3;
-      }
-      if (treasureClass === 'Nihlathak') {
-        row.Picks = 6;
-        SetQuestProp(row, 5);
-        row.Item2 = 'Act 5 Equip C';
-        row.Item3 = 'Act 5 Good';
-        row.Prob3 = 3;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Radament') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=2280';
-        row.Prob1 = 3;
-        row.Item2 = 'Act 3 Equip A';
-        row.Prob2 = 15;
-        row.Item3 = 'Act 3 Good';
-        row.Prob3 = 7;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Radament (N)') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=3536';
-        row.Prob1 = 3;
-        row.Item2 = 'Act 3 (N) Equip A';
-        row.Prob2 = 3;
-        row.Item3 = 'Act 3 (N) Good';
-        row.Prob3 = 15;
-        row.Item4 = '';
-        row.Prob4 = '';
-      }
-      if (treasureClass === 'Smith') {
-        row.Picks = 3;
-        row.Unique = 1024;
-        row.Set = 800;
-        row.Rare = 800;
-        row.Magic = 800;
-      }
-      if (treasureClass === 'Smith (N)') {
-        row.Picks = 3;
-        row.Unique = 1024;
-        row.Set = 800;
-        row.Rare = 800;
-        row.Magic = 800;
-      }
-      if (treasureClass === 'Smith (H)') {
-        row.Picks = 3;
-        row.Unique = 1024;
-        row.Set = 800;
-        row.Rare = 800;
-        row.Magic = 800;
-      }
-      if (treasureClass === 'Summoner') {
-        SetDefaultQuestProp(row, true);
-        row.Item1 = 'gld,mul=2280';
-        row.Prob1 = 4;
-        row.Item3 = 'Act 2 Good';
-        row.Prob3 = 2;
-        row.Item4 = 'Act 3 Equip A';
-        row.Prob4 = 4;
-        row.Item5 = '';
-        row.Prob5 = '';
-      }
-    }
-
-    // Increased more drop rates.
-    {
-      const chestLevel = ["A", "B", "C"];
-      const diffLevel = ['', '(N) ', '(H) '];
-      for (let acts = 1; acts <= 5; acts = acts + 1) {
-        for (let level = 0; level < 3; level = level + 1) {
-          for (let diff = 0; diff < 3; diff = diff + 1) {
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`) {
-              if (acts === 5) {
-                if (diff === 2) {
-                  if (chestLevel[level] === "B") {
-                    row.level = 70;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.level = 70;
-                    row.Prob1 = 0;
-                    row.Prob2 = 0;
-                    row.Prob3 = 0;
-                    row.Prob4 = 0;
-                    row.Prob6 = 5;
-                    row.Prob7 = 5;
-                    row.Prob8 = 5;
-                  }
-                }
-              }
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Cast ${chestLevel[level]}`) {
-              // Act 1
-              if (acts === 1) {
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act 1 ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item4 = `Act 1 ${diffLevel[diff]}Magic B`;
-                  }
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-                // Hell
-                else if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act 1 ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item4 = `Act 1 ${diffLevel[diff]}Magic B`;
-                  }
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-                // Normal
-                else {
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic ${chestLevel[level]}`;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-              }
-              // Act 2
-              else if (acts === 2) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-                else if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-                else {
-                  if (chestLevel[level] === "A") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item3 = `Act 3 ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic C`;
-                  }
-                }
-              }
-              // Act 3
-              else if (acts === 3) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic C`;
-                  }
-                }
-              }
-              else if (acts == 4) {
-                if (chestLevel[level] === "A") {
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                }
-                else {
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                }
-              }
-              else {
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic C`;
-                  }
-                }
-                else {
-                  if (chestLevel[level] === "A") {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic A`;
-                  }
-                  else {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Magic B`;
-                  }
-                }
-                row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-              }
-              row.Prob3 = 2;
-              row.Prob4 = 7;
-              row.Item5 = '';
-              row.Prob5 = '';
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Chest ${chestLevel[level]}`) {
-              // Act 1
-              if (acts === 1) {
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 1 ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  }
-                  else {
-                    row.Item2 = `Act 1 ${diffLevel[diff]}Equip B`;
-                  }
-                  row.Prob2 = 10;
-                }
-                // Hell
-                else if (diff === 2) {
-                  if (chestLevel[level] === "C") {
-                    row.Item2 = `Act 1 ${diffLevel[diff]}Equip B`;
-                  }
-                  else {
-                    row.Item2 = `Act 1 ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  }
-                  row.Prob2 = 10;
-                }
-                // Normal
-                else {
-                  if (chestLevel[level] === "C") {
-                    row.Prob2 = 15;
-                  }
-                  else {
-                    row.Prob2 = 10;
-                  }
-                  row.Item2 = `Act 1 ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                }
-              }
-              // Act 2
-              else if (acts === 2) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 2 (H) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 2 (H) Equip B`;
-                  }
-                  row.Prob2 = 10;
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 2 (N) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 2 (N) Equip B`;
-                  }
-                  row.Prob2 = 10;
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 2 Equip A`;
-                    row.Prob2 = 10;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item2 = `Act 2 Equip B`;
-                    row.Prob2 = 10;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item2 = `Act 2 Equip C`;
-                    row.Prob2 = 15;
-                  }
-                }
-              }
-              // Act 3
-              else if (acts === 3) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 3 (H) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 3 (H) Equip B`;
-                  }
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 3 (N) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 3 (N) Equip B`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 3 Equip A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item2 = `Act 3 Equip B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item2 = `Act 3 Equip C`;
-                  }
-                }
-                row.Prob2 = 10;
-              }
-              // Act 4
-              else if (acts === 4) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 4 (H) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 4 (H) Equip B`;
-                  }
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 4 (N) Equip A`;
-                  }
-                  if (chestLevel[level] === "B") {
-                    row.Item2 = `Act 4 (N) Equip B`;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Item2 = `Act 4 (N) Equip C`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 4 Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 4 Equip B`;
-                  }
-                }
-                row.Prob2 = 10;
-              }
-              // Act
-              else if (acts === 5) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 5 (H) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 5 (H) Equip B`;
-                  }
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 5 (N) Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 5 (N) Equip B`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "A") {
-                    row.Item2 = `Act 5 Equip A`;
-                  }
-                  else {
-                    row.Item2 = `Act 5 Equip B`;
-                  }
-                }
-                row.Prob2 = 10;
-              }
-              else {
-                row.Prob2 = 15;
-              }
-              row.NoDrop = 50;
-              row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-              row.Prob3 = 4;
-              row.Item4 = '';
-              row.Prob4 = '';
-              row.Item5 = '';
-              row.Prob5 = '';
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`) {
-              if (acts === 5) {
-                if (diff === 2) {
-                  if (chestLevel[level] === "B") {
-                    row.Prob1 = 1;
-                    row.Prob3 = 4;
-                    row.Prob4 = 6;
-                    row.Prob5 = 12;
-                    row.Prob6 = 6;
-                    row.Prob7 = 4;
-                    row.Prob8 = 3;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Prob1 = 1;
-                    row.Prob3 = 4;
-                    row.Prob4 = 6;
-                    row.Prob5 = 11;
-                    row.Prob6 = 5;
-                    row.Prob7 = 5;
-                    row.Prob8 = 5;
-                  }
-                }
-              }
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}H2H ${chestLevel[level]}`) {
-              if (acts === 2) {
-                if (diff === 0) {
-                  if (chestLevel[level] === "C") {
-                    row.Item3 = `Act 3 Good`;
-                  }
-                  else {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                }
-                else {
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-              }
-              else {
-                row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-              }
-              row.Prob3 = 2;
-              row.Item4 = '';
-              row.Prob4 = '';
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Melee ${chestLevel[level]}`) {
-              if (acts === 5) {
-                if (diff === 2) {
-                  if (chestLevel[level] === "B") {
-                    row.Prob1 = 2;
-                    row.Prob3 = 6;
-                    row.Prob4 = 3;
-                    row.Prob5 = 14;
-                    row.Prob6 = 7;
-                    row.Prob7 = 3;
-                    row.Prob8 = 3;
-                  }
-                  if (chestLevel[level] === "C") {
-                    row.Prob1 = 1;
-                    row.Prob3 = 3;
-                    row.Prob4 = 3;
-                    row.Prob5 = 11;
-                    row.Prob6 = 7;
-                    row.Prob7 = 4;
-                    row.Prob8 = 4;
-                  }
-                }
-              }
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Miss ${chestLevel[level]}`) {
-              row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-              row.Prob3 = 2;
-              if (acts === 1) {
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                // Hell
-                else if (diff === 2) {
-                  if (chestLevel[level] === "A") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow A`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                }
-                else {
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                }
-              }
-              else if (acts === 2) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                else {
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "C") {
-                    row.Item3 = `Act 3 ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-              }
-              else if (acts === 3) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                else {
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "C") {
-                    row.Item3 = `Act 3 ${diffLevel[diff]}Good`;
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-              }
-              else if (acts === 5) {
-                // Hell
-                if (diff === 2) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                else {
-                  row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                }
-                // Nightmare
-                if (diff === 1) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-                // Normal
-                if (diff === 0) {
-                  if (chestLevel[level] === "C") {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow B`;
-                  }
-                  else {
-                    row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-                  }
-                }
-              }
-              else {
-                row.Item4 = `Act ${acts} ${diffLevel[diff]}Bow ${chestLevel[level]}`;
-              }
-              row.Prob4 = 6;
-              row.Item5 = 'Ammo';
-              row.Prob5 = 3;
-              row.Item6 = '';
-              row.Prob6 = '';
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Super ${chestLevel[level]}`) {
-              // Super A
-              if (treasureClass === `Act ${acts} ${diffLevel[diff]}Super A`) {
-                // Act 1
-                if (acts === 1) {
-                  // Normal
-                  if (diff === 0) {
-                    row.level = 5;
-                    row.Prob1 = 14;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Prob1 = 14;
-                  }
-                  // Hell
-                  if (diff === 2) {
-                    row.Prob1 = 12;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 6;
-                }
-                // Act 2
-                if (acts === 2) {
-                  // Normal
-                  if (diff === 0) {
-                    row.level = 12;
-                    row.Item2 = `Act 1 Equip C`;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Item2 = `Act 1 (N) Equip C`;
-                  }
-                  // Hell
-                  if (diff === 2) {
-                    row.Item2 = `Act 1 (H) Equip C`;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 15;
-                  row.Prob2 = 7;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 6;
-                }
-                // Act 3
-                if (acts === 3) {
-                  // Normal
-                  if (diff === 0) {
-                    row.Item2 = `Act 2 Equip C`;
-                    row.Prob1 = 15;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Item2 = `Act 2 (N) Equip C`;
-                    row.Prob1 = 15;
-                  }
-                  // Hell
-                  if (diff === 2) {
-                    row.Item2 = `Act 2 (H) Equip C`;
-                    row.Prob1 = 15;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob2 = 7;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 6;
-                }
-                // Act 4
-                if (acts === 4) {
-                  // Normal
-                  if (diff === 0) {
-                    row.level = 26;
-                    row.Prob1 = 12;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Prob1 = 12;
-                  }
-                  // Hell
-                  if (diff === 2) {
-                    row.Prob1 = 12;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                  row.Prob2 = 12;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 3;
-                }
-                // Act 5
-                if (acts === 5) {
-                  // Hell
-                  if (diff === 2) {
-                    row.Item2 = `Act 4 ${diffLevel[diff]}Equip C`;
-                  }
-                  else if (diff === 0) {
-                    row.Item2 = `Act 4 ${diffLevel[diff]}Equip C`;
-                  }
-                  else {
-                    row.Item2 = `Act 4 ${diffLevel[diff]}Equip C`;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 15;
-                  row.Prob2 = 7;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 3;
-                }
-              }
-              // Super B
-              else if (treasureClass === `Act ${acts} ${diffLevel[diff]}Super B`) {
-                if (acts === 1) {
-                  // Normal
-                  if (diff === 0) {
-                    row.level = 7;
-                    row.Prob1 = 14;
-                    row.Prob3 = 6;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Prob1 = 14;
-                    row.Prob3 = 6;
-                  }
-                  // Hell
-                  if (diff === 2) {
-                    row.Prob1 = 12;
-                    row.Prob3 = 6;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                }
-                if (acts === 2) {
-                  row.Prob1 = 15;
-                  row.Prob3 = 6;
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                }
-                if (acts === 3) {
-                  // Hell
-                  if (diff === 2) {
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                  }
-                  else if (diff === 1) {
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                  }
-                  else {
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                  }
-                  row.Prob1 = 15;
-                  row.Prob3 = 6;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                }
-                if (acts === 4) {
-                  if (diff === 1) {
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                    row.Prob1 = 12;
-                    row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                    row.Prob3 = 3;
-                  }
-                  else if (diff === 2) {
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                    row.Prob1 = 12;
-                    row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                    row.Prob3 = 3;
-                  }
-                  else {
-                    row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                    row.Prob1 = 12;
-                    row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                    row.Prob3 = 3;
-                  }
-                  row.Prob2 = 12;
-                }
-                if (acts === 5) {
-                  row.Prob1 = 15;
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip C`;
-                  row.Prob3 = 3;
-                }
-                row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-
-              }
-              // Super C
-              else if (treasureClass === `Act ${acts} ${diffLevel[diff]}Super C`) {
-                // Act 1
-                if (acts === 1) {
-                  // Hell
-                  if (diff === 2) {
-                    row.Prob2 = 2;
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                  else {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 15;
-                  row.Item2 = `Act 2 ${diffLevel[diff]}Equip A`;
-                  row.Prob3 = 6;
-                }
-                // Act 2
-                if (acts === 2) {
-                  // Hell
-                  if (diff === 2) {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                  // Nightmare
-                  if (diff === 1) {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                  // Normal
-                  if (diff === 0) {
-                    row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 15;
-                  row.Item2 = `Act 3 ${diffLevel[diff]}Equip A`;
-                  row.Prob3 = 6;
-                } // Act 3
-                if (acts === 3) {
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip A`;
-                  row.Prob1 = 15;
-                  row.Item2 = `Act 4 ${diffLevel[diff]}Equip A`;
-                  row.Prob2 = 2;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 6;
-                }
-                // Act 4
-                if (acts === 4) {
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 12;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Equip B`;
-                  row.Prob2 = 12;
-                  row.Item3 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob3 = 3;
-                }
-                // Act 5
-                if (acts === 5) {
-                  row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-                  row.Prob1 = 15;
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  row.Prob2 = 3;
-                }
-              }
-              row.Picks = 5;
-              row.Set = 1024;
-              row.Rare = 800;
-              row.Magic = 800;
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Super ${chestLevel[level]}x`) {
-              row.group = 18;
-              row.Picks = 5;
-              row.Magic = 900;
-            }
-            if (treasureClass === `Act ${acts} ${diffLevel[diff]}Unique ${chestLevel[level]}`) {
-              if (acts === 2) {
-                if (diff === 0) {
-                  if (chestLevel[level] === "C") {
-                    row.Item2 = `Act 3 ${diffLevel[diff]}Good`;
-                  }
-                  else {
-                    row.Item2 = `Act ${acts} ${diffLevel[diff]}Good`;
-                  }
-                }
-                else {
-                  row.Item2 = `Act ${acts} ${diffLevel[diff]}Good`;
-                }
-              }
-              else {
-                row.Item2 = `Act ${acts} ${diffLevel[diff]}Good`;
-              }
-              row.Picks = 3;
-              row.Unique = 933;
-              row.Set = 1010;
-              row.Rare = 800;
-              row.Magic = 800;
-              row.Item1 = `Act ${acts} ${diffLevel[diff]}Equip ${chestLevel[level]}`;
-              row.Prob1 = 11;
-              row.Prob2 = 1;
-            }
-          }
-        }
-      }
-    }
-
-    if (treasureClass === 'Chipped Gem') {
-      row.Prob1 = 10;
-      row.Prob2 = 6;
-      row.Prob3 = 6;
-      row.Prob4 = 6;
-      row.Prob5 = 6;
-      row.Prob6 = 6;
-      row.Prob7 = 6;
-    }
-    if (treasureClass === 'Flawed Gem') {
-      row.Prob7 = 3;
-    }
-    if (treasureClass === 'Normal Gem') {
-      row.Prob7 = 3;
-    }
-    if (treasureClass === 'Flawless Gem') {
-      row.Prob7 = 3;
-    }
-    if (treasureClass === 'Perfect Gem') {
-      row.Prob7 = 3;
-    }
-    if (treasureClass === 'Runes 12') {
-      row.Item4 = 'Runes 2';
-    }
-    if (treasureClass === 'Runes 13') {
-      row.Item4 = 'Runes 2';
-    }
-    if (treasureClass === 'Runes 14') {
-      row.Item4 = 'Runes 2';
-    }
-    if (treasureClass === 'Runes 15') {
-      row.Item4 = 'Runes 2';
-    }
-    if (treasureClass === 'Runes 16') {
-      row.Item4 = 'Runes 2';
-    }
-  });
-  D2RMM.writeTsv(treasureclassexFilename, treasureclassex);
-}
-
 // D2SE_Enjoy-SP_Mod_1.7 implementation Armor.txt
 {
   const NameAndRarity = [
@@ -3770,7 +2364,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   const setItemsFilename = 'global\\excel\\setitems.txt';
   const setItems = D2RMM.readTsv(setItemsFilename);
   setItems.rows.forEach((row) => {
-    const theIndex  = row['index'];
+    const theIndex = row['index'];
     const theSetItem = NameAndRarity.find(si => si.name === theIndex);
     if (theSetItem) {
       row['rarity'] = theSetItem.rarity;
@@ -3818,6 +2412,9129 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   //}
   //});
   //D2RMM.writeTsv(skillsFilename, skills);
+}
+
+// D2SE_Enjoy-SP_Mod_1.7 implementation TreasureClass.txt Changes
+{
+  const treasureClassChanges = [
+    {
+      treasureClass: "Chipped Gem",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "gcv", prob1: 10,
+      item2: "gcy", prob2: 6,
+      item3: "gcb", prob3: 6,
+      item4: "gcg", prob4: 6,
+      item5: "gcr", prob5: 6,
+      item6: "gcw", prob6: 6,
+      item7: "skc", prob7: 6,
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Flawed Gem",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "gfv", prob1: 3,
+      item2: "gfy", prob2: 3,
+      item3: "gfb", prob3: 3,
+      item4: "gfg", prob4: 3,
+      item5: "gfr", prob5: 3,
+      item6: "gfw", prob6: 3,
+      item7: "skf", prob7: 3,
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Normal Gem",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "gsv", prob1: 3,
+      item2: "gsy", prob2: 3,
+      item3: "gsb", prob3: 3,
+      item4: "gsg", prob4: 3,
+      item5: "gsr", prob5: 3,
+      item6: "gsw", prob6: 3,
+      item7: "sku", prob7: 3,
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Flawless Gem",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "gzv", prob1: 3,
+      item2: "gly", prob2: 3,
+      item3: "glb", prob3: 3,
+      item4: "glg", prob4: 3,
+      item5: "glr", prob5: 3,
+      item6: "glw", prob6: 3,
+      item7: "skl", prob7: 3,
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Perfect Gem",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "gpv", prob1: 3,
+      item2: "gpy", prob2: 3,
+      item3: "gpb", prob3: 3,
+      item4: "gpg", prob4: 3,
+      item5: "gpr", prob5: 3,
+      item6: "gpw", prob6: 3,
+      item7: "skz", prob7: 3,
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 2",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r03", prob1: 3,
+      item2: "r04", prob2: 2,
+      item3: "Runes 1", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 3",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r05", prob1: 3,
+      item2: "r06", prob2: 2,
+      item3: "Runes 2", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 4",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r07", prob1: 3,
+      item2: "r08", prob2: 2,
+      item3: "Runes 3", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 5",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r09", prob1: 3,
+      item2: "r10", prob2: 2,
+      item3: "Runes 4", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 6",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r11", prob1: 3,
+      item2: "r12", prob2: 2,
+      item3: "Runes 5", prob3: 5,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 7",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r13", prob1: 3,
+      item2: "r14", prob2: 2,
+      item3: "Runes 6", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 8",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r15", prob1: 3,
+      item2: "r16", prob2: 2,
+      item3: "Runes 7", prob3: 7,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 9",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r17", prob1: 3,
+      item2: "r18", prob2: 2,
+      item3: "Runes 8", prob3: 8,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 10",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r19", prob1: 3,
+      item2: "r20", prob2: 2,
+      item3: "Runes 9", prob3: 9,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 11",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r21", prob1: 3,
+      item2: "r22", prob2: 2,
+      item3: "Runes 10", prob3: 10,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 12",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r23", prob1: 3,
+      item2: "r24", prob2: 2,
+      item3: "Runes 11", prob3: 11,
+      item4: "Runes 2", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 13",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r25", prob1: 3,
+      item2: "r26", prob2: 2,
+      item3: "Runes 12", prob3: 12,
+      item4: "Runes 2", prob4: 8,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 14",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r27", prob1: 3,
+      item2: "r28", prob2: 2,
+      item3: "Runes 13", prob3: 13,
+      item4: "Runes 2", prob4: 8,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 15",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r29", prob1: 3,
+      item2: "r30", prob2: 2,
+      item3: "Runes 14", prob3: 14,
+      item4: "Runes 2", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 16",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r31", prob1: 3,
+      item2: "r32", prob2: 2,
+      item3: "Runes 15", prob3: 15,
+      item4: "Runes 2", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Runes 17",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "r33", prob1: 3,
+      item2: "Runes 16", prob2: 16,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Equip B",
+      level: 84,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "weap78", prob1: 1,
+      item2: "armo78", prob2: 1,
+      item3: "weap81", prob3: 4,
+      item4: "armo81", prob4: 6,
+      item5: "weap84", prob5: 12,
+      item6: "armo84", prob6: 6,
+      item7: "weap87", prob7: 4,
+      item8: "armo87", prob8: 3
+    },
+
+    {
+      treasureClass: "Act 5 (H) Equip C",
+      level: 85,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "weap81", prob1: 1,
+      item2: "armo81", prob2: 1,
+      item3: "weap84", prob3: 4,
+      item4: "armo84", prob4: 6,
+      item5: "weap87", prob5: 11,
+      item6: "armo87", prob6: 5,
+      item7: "weap87", prob7: 5,
+      item8: "armo87", prob8: 5
+    },
+
+    {
+      treasureClass: "Act 5 (H) Melee B",
+      level: 83,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "weap78", prob1: 2,
+      item2: "armo78", prob2: 1,
+      item3: "weap81", prob3: 6,
+      item4: "armo81", prob4: 3,
+      item5: "weap84", prob5: 14,
+      item6: "armo84", prob6: 7,
+      item7: "weap87", prob7: 3,
+      item8: "armo87", prob8: 3
+    },
+
+    {
+      treasureClass: "Act 5 (H) Melee C",
+      level: 85,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "weap81", prob1: 1,
+      item2: "armo81", prob2: 1,
+      item3: "weap84", prob3: 3,
+      item4: "armo84", prob4: 3,
+      item5: "weap87", prob5: 11,
+      item6: "armo87", prob6: 7,
+      item7: "weap87", prob7: 4,
+      item8: "armo87", prob8: 4
+    },
+
+    {
+      treasureClass: "Act 5 (H) Bow B",
+      level: 70,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "bow72", prob1: 1,
+      item2: "bow75", prob2: 2,
+      item3: "bow78", prob3: 5,
+      item4: "bow81", prob4: 7,
+      item5: "bow84", prob5: 8,
+      item6: "bow87", prob6: 7,
+      item7: "bow87", prob7: 2,
+      item8: "bow87", prob8: 1
+    },
+
+    {
+      treasureClass: "Act 5 (H) Bow C",
+      level: 70,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: "",
+      item1: "bow75", prob1: 0,
+      item2: "bow78", prob2: 0,
+      item3: "bow81", prob3: 0,
+      item4: "bow84", prob4: 0,
+      item5: "bow87", prob5: 8,
+      item6: "bow87", prob6: 5,
+      item7: "bow87", prob7: 5,
+      item8: "bow87", prob8: 5
+    },
+
+    {
+      treasureClass: "Act 1 Chest A",
+      level: 0,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 Equip A", prob2: 10,
+      item3: "Act 1 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Chest B",
+      level: 5,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 Equip B", prob2: 10,
+      item3: "Act 1 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Chest C",
+      level: 9,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 Equip C", prob2: 15,
+      item3: "Act 1 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Chest A",
+      level: 12,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 Equip A", prob2: 10,
+      item3: "Act 2 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Chest B",
+      level: 15,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 Equip B", prob2: 10,
+      item3: "Act 2 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Chest C",
+      level: 18,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 Equip C", prob2: 15,
+      item3: "Act 2 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Chest A",
+      level: 20,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 Equip A", prob2: 10,
+      item3: "Act 3 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Chest B",
+      level: 22,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 Equip B", prob2: 10,
+      item3: "Act 3 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Chest C",
+      level: 24,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 Equip C", prob2: 10,
+      item3: "Act 3 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Chest A",
+      level: 26,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 Equip A", prob2: 10,
+      item3: "Act 4 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Chest B",
+      level: 28,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 Equip B", prob2: 10,
+      item3: "Act 4 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Chest C",
+      level: 30,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 Equip B", prob2: 10,
+      item3: "Act 4 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Chest A",
+      level: 32,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 Equip A", prob2: 10,
+      item3: "Act 5 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Chest B",
+      level: 34,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 Equip B", prob2: 10,
+      item3: "Act 5 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Chest C",
+      level: 36,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 Equip B", prob2: 10,
+      item3: "Act 5 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Chest A",
+      level: 38,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (N) Equip A", prob2: 10,
+      item3: "Act 1 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Chest B",
+      level: 40,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (N) Equip B", prob2: 10,
+      item3: "Act 1 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Chest C",
+      level: 42,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (N) Equip B", prob2: 10,
+      item3: "Act 1 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Chest A",
+      level: 44,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (N) Equip A", prob2: 10,
+      item3: "Act 2 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Chest B",
+      level: 46,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (N) Equip B", prob2: 10,
+      item3: "Act 2 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Chest C",
+      level: 48,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (N) Equip B", prob2: 10,
+      item3: "Act 2 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Chest A",
+      level: 50,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (N) Equip A", prob2: 10,
+      item3: "Act 3 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Chest B",
+      level: 52,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (N) Equip B", prob2: 10,
+      item3: "Act 3 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Chest C",
+      level: 54,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (N) Equip B", prob2: 10,
+      item3: "Act 3 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Chest A",
+      level: 56,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (N) Equip A", prob2: 10,
+      item3: "Act 4 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Chest B",
+      level: 58,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (N) Equip B", prob2: 10,
+      item3: "Act 4 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Chest C",
+      level: 60,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (N) Equip C", prob2: 10,
+      item3: "Act 4 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Chest A",
+      level: 62,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (N) Equip A", prob2: 10,
+      item3: "Act 5 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Chest B",
+      level: 64,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (N) Equip B", prob2: 10,
+      item3: "Act 5 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Chest C",
+      level: 66,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (N) Equip B", prob2: 10,
+      item3: "Act 5 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Chest A",
+      level: 68,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (H) Equip A", prob2: 10,
+      item3: "Act 1 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Chest B",
+      level: 70,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (H) Equip B", prob2: 10,
+      item3: "Act 1 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Chest C",
+      level: 71,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 1 (H) Equip B", prob2: 10,
+      item3: "Act 1 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Chest A",
+      level: 72,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (H) Equip A", prob2: 10,
+      item3: "Act 2 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Chest B",
+      level: 74,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (H) Equip B", prob2: 10,
+      item3: "Act 2 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Chest C",
+      level: 75,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 2 (H) Equip B", prob2: 10,
+      item3: "Act 2 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Chest A",
+      level: 76,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (H) Equip A", prob2: 10,
+      item3: "Act 3 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Chest B",
+      level: 78,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (H) Equip B", prob2: 10,
+      item3: "Act 3 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Chest C",
+      level: 79,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 3 (H) Equip B", prob2: 10,
+      item3: "Act 3 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Chest A",
+      level: 80,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (H) Equip A", prob2: 10,
+      item3: "Act 4 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Chest B",
+      level: 81,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (H) Equip B", prob2: 10,
+      item3: "Act 4 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Chest C",
+      level: 82,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 4 (H) Equip B", prob2: 10,
+      item3: "Act 4 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Chest A",
+      level: 83,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (H) Equip A", prob2: 10,
+      item3: "Act 5 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Chest B",
+      level: 84,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (H) Equip B", prob2: 10,
+      item3: "Act 5 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Chest C",
+      level: 85,
+      picks: 4,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 50,
+      item1: "gld", prob1: 15,
+      item2: "Act 5 (H) Equip B", prob2: 10,
+      item3: "Act 5 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 H2H A",
+      level: 0,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 Equip A", prob2: 16,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 H2H B",
+      level: 5,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 Equip B", prob2: 16,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 H2H C",
+      level: 9,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 Equip C", prob2: 16,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 H2H A",
+      level: 12,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 Equip A", prob2: 16,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 H2H B",
+      level: 15,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 Equip B", prob2: 16,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 H2H C",
+      level: 18,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 Equip C", prob2: 16,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 H2H A",
+      level: 20,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 Equip A", prob2: 16,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 H2H B",
+      level: 22,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 Equip B", prob2: 16,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 H2H C",
+      level: 24,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 Equip C", prob2: 16,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 H2H A",
+      level: 26,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 Equip A", prob2: 16,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 H2H B",
+      level: 29,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 Equip B", prob2: 16,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 H2H A",
+      level: 32,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 Equip A", prob2: 16,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 H2H B",
+      level: 34,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 Equip B", prob2: 16,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 H2H C",
+      level: 36,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 Equip C", prob2: 16,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) H2H A",
+      level: 38,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (N) Equip A", prob2: 16,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) H2H B",
+      level: 40,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (N) Equip B", prob2: 16,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) H2H C",
+      level: 41,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (N) Equip B", prob2: 16,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) H2H A",
+      level: 42,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (N) Equip A", prob2: 16,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) H2H B",
+      level: 44,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (N) Equip B", prob2: 16,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) H2H C",
+      level: 45,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (N) Equip B", prob2: 16,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) H2H A",
+      level: 46,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (N) Equip A", prob2: 16,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) H2H B",
+      level: 48,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (N) Equip B", prob2: 16,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) H2H C",
+      level: 50,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (N) Equip B", prob2: 16,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) H2H A",
+      level: 51,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 (N) Equip A", prob2: 16,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) H2H B",
+      level: 54,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 (N) Equip B", prob2: 16,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) H2H A",
+      level: 57,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (N) Equip A", prob2: 16,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) H2H B",
+      level: 60,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (N) Equip B", prob2: 16,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) H2H C",
+      level: 62,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (N) Equip C", prob2: 16,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) H2H A",
+      level: 63,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (H) Equip A", prob2: 16,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) H2H B",
+      level: 66,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (H) Equip B", prob2: 16,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) H2H C",
+      level: 68,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 1 (H) Equip B", prob2: 16,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) H2H A",
+      level: 69,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (H) Equip A", prob2: 16,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) H2H B",
+      level: 71,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (H) Equip B", prob2: 16,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) H2H C",
+      level: 73,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 2 (H) Equip B", prob2: 16,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) H2H A",
+      level: 74,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (H) Equip A", prob2: 16,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) H2H B",
+      level: 76,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (H) Equip B", prob2: 16,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) H2H C",
+      level: 77,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 3 (H) Equip B", prob2: 16,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) H2H A",
+      level: 79,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 (H) Equip A", prob2: 16,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) H2H B",
+      level: 80,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 4 (H) Equip B", prob2: 16,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) H2H A",
+      level: 82,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (H) Equip A", prob2: 16,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) H2H B",
+      level: 83,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (H) Equip B", prob2: 16,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) H2H C",
+      level: 85,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 21,
+      item2: "Act 5 (H) Equip C", prob2: 16,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Cast A",
+      level: 0,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip A", prob2: 15,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Cast B",
+      level: 5,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip B", prob2: 15,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Cast C",
+      level: 9,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip C", prob2: 15,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Magic C", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Cast A",
+      level: 12,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip A", prob2: 15,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "Act 2 Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Cast B",
+      level: 15,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip B", prob2: 15,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "Act 2 Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Cast C",
+      level: 18,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip C", prob2: 15,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 2 Magic C", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Cast A",
+      level: 20,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip A", prob2: 15,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Cast B",
+      level: 22,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip B", prob2: 15,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Cast C",
+      level: 24,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip C", prob2: 15,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Magic C", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Cast A",
+      level: 26,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 Equip A", prob2: 15,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "Act 4 Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Cast B",
+      level: 29,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 Equip B", prob2: 15,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "Act 4 Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Cast A",
+      level: 32,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip A", prob2: 15,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Cast B",
+      level: 34,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip B", prob2: 15,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Cast C",
+      level: 36,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip C", prob2: 15,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Magic C", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Cast A",
+      level: 38,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip A", prob2: 15,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Cast B",
+      level: 40,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip B", prob2: 15,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Cast C",
+      level: 41,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip B", prob2: 15,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Cast A",
+      level: 42,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip A", prob2: 15,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Cast B",
+      level: 44,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip B", prob2: 15,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Cast C",
+      level: 45,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip B", prob2: 15,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Cast A",
+      level: 46,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip A", prob2: 15,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Cast B",
+      level: 48,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip B", prob2: 15,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Cast C",
+      level: 50,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip B", prob2: 15,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Cast A",
+      level: 51,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (N) Equip A", prob2: 15,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "Act 4 (N) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Cast B",
+      level: 54,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (N) Equip B", prob2: 15,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "Act 4 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Cast A",
+      level: 57,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip A", prob2: 15,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Cast B",
+      level: 60,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip B", prob2: 15,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Cast C",
+      level: 62,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip C", prob2: 15,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Cast A",
+      level: 63,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip A", prob2: 15,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Cast B",
+      level: 66,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip B", prob2: 15,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Cast C",
+      level: 68,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip B", prob2: 15,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Cast A",
+      level: 69,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip A", prob2: 15,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Cast B",
+      level: 71,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip B", prob2: 15,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Cast C",
+      level: 72,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip B", prob2: 15,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Cast A",
+      level: 74,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip A", prob2: 15,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Cast B",
+      level: 75,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip B", prob2: 15,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Cast C",
+      level: 77,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip B", prob2: 15,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Cast A",
+      level: 78,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (H) Equip A", prob2: 15,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "Act 4 (H) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Cast B",
+      level: 80,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (H) Equip B", prob2: 15,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "Act 4 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Cast A",
+      level: 81,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip A", prob2: 15,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Magic A", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Cast B",
+      level: 83,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip B", prob2: 15,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Cast C",
+      level: 85,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip C", prob2: 15,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Magic B", prob4: 7,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Miss A",
+      level: 0,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip A", prob2: 13,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Miss B",
+      level: 5,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip B", prob2: 13,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Miss C",
+      level: 9,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 Equip C", prob2: 13,
+      item3: "Act 1 Good", prob3: 2,
+      item4: "Act 1 Bow C", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Miss A",
+      level: 12,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip A", prob2: 13,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "Act 2 Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Miss B",
+      level: 15,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip B", prob2: 13,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "Act 2 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Miss C",
+      level: 18,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 Equip C", prob2: 13,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 2 Bow C", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Miss A",
+      level: 20,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip A", prob2: 13,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Miss B",
+      level: 22,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip B", prob2: 13,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Miss C",
+      level: 24,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 Equip C", prob2: 13,
+      item3: "Act 3 Good", prob3: 2,
+      item4: "Act 3 Bow C", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Miss A",
+      level: 26,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 Equip A", prob2: 13,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "Act 4 Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Miss B",
+      level: 29,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 Equip B", prob2: 13,
+      item3: "Act 4 Good", prob3: 2,
+      item4: "Act 4 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Miss A",
+      level: 32,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip A", prob2: 13,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Miss B",
+      level: 34,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip B", prob2: 13,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Miss C",
+      level: 36,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 Equip C", prob2: 13,
+      item3: "Act 5 Good", prob3: 2,
+      item4: "Act 5 Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Miss A",
+      level: 38,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip A", prob2: 13,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Miss B",
+      level: 40,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip B", prob2: 13,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Miss C",
+      level: 41,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (N) Equip B", prob2: 13,
+      item3: "Act 1 (N) Good", prob3: 2,
+      item4: "Act 1 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Miss A",
+      level: 42,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip A", prob2: 13,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Miss B",
+      level: 44,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip B", prob2: 13,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Miss C",
+      level: 45,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (N) Equip B", prob2: 13,
+      item3: "Act 2 (N) Good", prob3: 2,
+      item4: "Act 2 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Miss A",
+      level: 46,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip A", prob2: 13,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Miss B",
+      level: 48,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip B", prob2: 13,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Miss C",
+      level: 50,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (N) Equip B", prob2: 13,
+      item3: "Act 3 (N) Good", prob3: 2,
+      item4: "Act 3 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Miss A",
+      level: 51,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (N) Equip A", prob2: 13,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "Act 4 (N) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Miss B",
+      level: 54,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (N) Equip B", prob2: 13,
+      item3: "Act 4 (N) Good", prob3: 2,
+      item4: "Act 4 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Miss A",
+      level: 57,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip A", prob2: 13,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Miss B",
+      level: 60,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip B", prob2: 13,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Miss C",
+      level: 62,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (N) Equip C", prob2: 13,
+      item3: "Act 5 (N) Good", prob3: 2,
+      item4: "Act 5 (N) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Miss A",
+      level: 63,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip A", prob2: 13,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Miss B",
+      level: 66,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip B", prob2: 13,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Miss C",
+      level: 68,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 1 (H) Equip B", prob2: 13,
+      item3: "Act 1 (H) Good", prob3: 2,
+      item4: "Act 1 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Miss A",
+      level: 69,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip A", prob2: 13,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Miss B",
+      level: 71,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip B", prob2: 13,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Miss C",
+      level: 72,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 2 (H) Equip B", prob2: 13,
+      item3: "Act 2 (H) Good", prob3: 2,
+      item4: "Act 2 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Miss A",
+      level: 74,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip A", prob2: 13,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Miss B",
+      level: 75,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip B", prob2: 13,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Miss C",
+      level: 77,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 3 (H) Equip B", prob2: 13,
+      item3: "Act 3 (H) Good", prob3: 2,
+      item4: "Act 3 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Miss A",
+      level: 78,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (H) Equip A", prob2: 13,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "Act 4 (H) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Miss B",
+      level: 80,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 4 (H) Equip B", prob2: 13,
+      item3: "Act 4 (H) Good", prob3: 2,
+      item4: "Act 4 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Miss A",
+      level: 81,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip A", prob2: 13,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Bow A", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Miss B",
+      level: 83,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip B", prob2: 13,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Miss C",
+      level: 85,
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 18,
+      item2: "Act 5 (H) Equip C", prob2: 13,
+      item3: "Act 5 (H) Good", prob3: 2,
+      item4: "Act 5 (H) Bow B", prob4: 6,
+      item5: "Ammo", prob5: 3,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Citem A",
+      level: 0,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 Equip A", prob2: 37,
+      item3: "Act 1 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Citem B",
+      level: 5,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 Equip B", prob2: 37,
+      item3: "Act 1 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Citem C",
+      level: 9,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 Equip C", prob2: 37,
+      item3: "Act 1 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Citem A",
+      level: 12,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 Equip A", prob2: 37,
+      item3: "Act 2 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Citem B",
+      level: 15,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 Equip B", prob2: 37,
+      item3: "Act 2 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Citem C",
+      level: 18,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 Equip C", prob2: 37,
+      item3: "Act 3 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Citem A",
+      level: 20,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 Equip A", prob2: 37,
+      item3: "Act 3 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Citem B",
+      level: 22,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 Equip B", prob2: 37,
+      item3: "Act 3 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Citem C",
+      level: 24,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 Equip C", prob2: 37,
+      item3: "Act 3 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Citem A",
+      level: 26,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 Equip A", prob2: 37,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Citem B",
+      level: 29,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 Equip B", prob2: 37,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Citem A",
+      level: 32,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 Equip A", prob2: 37,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Citem B",
+      level: 34,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 Equip B", prob2: 37,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Citem C",
+      level: 36,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 Equip C", prob2: 37,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Citem A",
+      level: 38,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (N) Equip A", prob2: 37,
+      item3: "Act 1 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Citem B",
+      level: 40,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (N) Equip B", prob2: 37,
+      item3: "Act 1 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Citem C",
+      level: 41,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (N) Equip B", prob2: 37,
+      item3: "Act 1 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Citem A",
+      level: 42,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (N) Equip A", prob2: 37,
+      item3: "Act 2 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Citem B",
+      level: 44,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (N) Equip B", prob2: 37,
+      item3: "Act 2 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Citem C",
+      level: 45,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (N) Equip B", prob2: 37,
+      item3: "Act 2 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Citem A",
+      level: 46,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (N) Equip A", prob2: 37,
+      item3: "Act 3 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Citem B",
+      level: 48,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (N) Equip B", prob2: 37,
+      item3: "Act 3 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Citem C",
+      level: 50,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (N) Equip B", prob2: 37,
+      item3: "Act 3 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Citem A",
+      level: 51,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 (N) Equip A", prob2: 37,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Citem B",
+      level: 54,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 (N) Equip B", prob2: 37,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Citem A",
+      level: 57,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (N) Equip A", prob2: 37,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Citem B",
+      level: 60,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (N) Equip B", prob2: 37,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Citem C",
+      level: 62,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (N) Equip C", prob2: 37,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Citem A",
+      level: 63,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (H) Equip A", prob2: 37,
+      item3: "Act 1 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Citem B",
+      level: 66,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (H) Equip B", prob2: 37,
+      item3: "Act 1 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Citem C",
+      level: 68,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 1 (H) Equip B", prob2: 37,
+      item3: "Act 1 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Citem A",
+      level: 69,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (H) Equip A", prob2: 37,
+      item3: "Act 2 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Citem B",
+      level: 71,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (H) Equip B", prob2: 37,
+      item3: "Act 2 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Citem C",
+      level: 72,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 2 (H) Equip B", prob2: 37,
+      item3: "Act 2 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Citem A",
+      level: 74,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (H) Equip A", prob2: 37,
+      item3: "Act 3 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Citem B",
+      level: 75,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (H) Equip B", prob2: 37,
+      item3: "Act 3 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Citem C",
+      level: 77,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 3 (H) Equip B", prob2: 37,
+      item3: "Act 3 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Citem A",
+      level: 78,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 (H) Equip A", prob2: 37,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Citem B",
+      level: 80,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 4 (H) Equip B", prob2: 37,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Citem A",
+      level: 81,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (H) Equip A", prob2: 37,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Citem B",
+      level: 83,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (H) Equip B", prob2: 37,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Citem C",
+      level: 85,
+      picks: 1,
+      unique: 800,
+      set: 800,
+      rare: 800,
+      magic: 1024,
+      noDrop: 0,
+      item1: "gld,mul=1280", prob1: 60,
+      item2: "Act 5 (H) Equip C", prob2: 37,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Unique A",
+      level: 0,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip A", prob1: 11,
+      item2: "Act 1 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Unique B",
+      level: 5,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip B", prob1: 11,
+      item2: "Act 1 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Unique C",
+      level: 9,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip C", prob1: 11,
+      item2: "Act 1 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Unique A",
+      level: 12,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip A", prob1: 11,
+      item2: "Act 2 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Unique B",
+      level: 15,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip B", prob1: 11,
+      item2: "Act 2 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Unique C",
+      level: 18,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip C", prob1: 11,
+      item2: "Act 3 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Unique A",
+      level: 20,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip A", prob1: 11,
+      item2: "Act 3 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Unique B",
+      level: 22,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip B", prob1: 11,
+      item2: "Act 3 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Unique C",
+      level: 24,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip C", prob1: 11,
+      item2: "Act 3 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Unique A",
+      level: 26,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip A", prob1: 11,
+      item2: "Act 4 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Unique B",
+      level: 29,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip B", prob1: 11,
+      item2: "Act 4 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Unique A",
+      level: 32,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip A", prob1: 11,
+      item2: "Act 5 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Unique B",
+      level: 34,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip B", prob1: 11,
+      item2: "Act 5 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Unique C",
+      level: 36,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip C", prob1: 11,
+      item2: "Act 5 Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Unique A",
+      level: 38,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip A", prob1: 11,
+      item2: "Act 1 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Unique B",
+      level: 40,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip B", prob1: 11,
+      item2: "Act 1 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Unique C",
+      level: 41,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip C", prob1: 11,
+      item2: "Act 1 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Unique A",
+      level: 42,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip A", prob1: 11,
+      item2: "Act 2 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Unique B",
+      level: 44,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip B", prob1: 11,
+      item2: "Act 2 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Unique C",
+      level: 45,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip C", prob1: 11,
+      item2: "Act 2 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Unique A",
+      level: 46,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip A", prob1: 11,
+      item2: "Act 3 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Unique B",
+      level: 48,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip B", prob1: 11,
+      item2: "Act 3 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Unique C",
+      level: 50,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip C", prob1: 11,
+      item2: "Act 3 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Unique A",
+      level: 51,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip A", prob1: 11,
+      item2: "Act 4 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Unique B",
+      level: 54,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip B", prob1: 11,
+      item2: "Act 4 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Unique A",
+      level: 57,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip A", prob1: 11,
+      item2: "Act 5 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Unique B",
+      level: 60,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip B", prob1: 11,
+      item2: "Act 5 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Unique C",
+      level: 62,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip C", prob1: 11,
+      item2: "Act 5 (N) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Unique A",
+      level: 63,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip A", prob1: 11,
+      item2: "Act 1 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Unique B",
+      level: 66,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip B", prob1: 11,
+      item2: "Act 1 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Unique C",
+      level: 68,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip C", prob1: 11,
+      item2: "Act 1 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Unique A",
+      level: 69,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip A", prob1: 11,
+      item2: "Act 2 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Unique B",
+      level: 71,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip B", prob1: 11,
+      item2: "Act 2 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Unique C",
+      level: 72,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip C", prob1: 11,
+      item2: "Act 2 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Unique A",
+      level: 74,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip A", prob1: 11,
+      item2: "Act 3 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Unique B",
+      level: 75,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip B", prob1: 11,
+      item2: "Act 3 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Unique C",
+      level: 77,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip C", prob1: 11,
+      item2: "Act 3 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Unique A",
+      level: 78,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip A", prob1: 11,
+      item2: "Act 4 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Unique B",
+      level: 80,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip B", prob1: 11,
+      item2: "Act 4 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Unique A",
+      level: 81,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip A", prob1: 11,
+      item2: "Act 5 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Unique B",
+      level: 83,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip B", prob1: 11,
+      item2: "Act 5 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Unique C",
+      level: 85,
+      picks: 3,
+      unique: 933,
+      set: 1010,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip C", prob1: 11,
+      item2: "Act 5 (H) Good", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andariel",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 5,
+      item2: "Act 2 Equip A", prob2: 15,
+      item3: "Act 2 Equip C", prob3: 5,
+      item4: "rin", prob4: 2,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andariel (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 5,
+      item2: "Act 2 (N) Equip A", prob2: 19,
+      item3: "Act 2 (N) Equip C", prob3: 6,
+      item4: "Act 2 (N) Good", prob4: 3,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andariel (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 5,
+      item2: "Act 2 (H) Equip A", prob2: 19,
+      item3: "Act 2 (H) Equip C", prob3: 7,
+      item4: "Act 2 (H) Good", prob4: 5,
+      item5: "tes", prob5: 0,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andarielq",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip A", prob1: 22,
+      item2: "Act 2 Equip C", prob2: 5,
+      item3: "Act 2 Good", prob3: 1,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andarielq (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip A", prob1: 22,
+      item2: "Act 2 (N) Good", prob2: 1,
+      item3: "Act 1 (N) Equip C", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Andarielq (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip A", prob1: 22,
+      item2: "Act 2 (H) Good", prob2: 1,
+      item3: "Act 1 (H) Equip C", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 11,
+      item2: "Act 3 Equip A", prob2: 19,
+      item3: "Act 3 Equip A", prob3: 3,
+      item4: "Act 3 Good", prob4: 2,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel (N) - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 11,
+      item2: "Act 3 (N) Equip A", prob2: 19,
+      item3: "Act 3 (N) Equip A", prob3: 3,
+      item4: "Act 3 (N) Good", prob4: 2,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel (H) - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 11,
+      item2: "Act 3 (H) Equip A", prob2: 19,
+      item3: "Act 3 (H) Equip A", prob3: 3,
+      item4: "Act 3 (H) Good", prob4: 2,
+      item5: "tes", prob5: 0,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip A", prob1: 22,
+      item2: "Act 3 Good", prob2: 1,
+      item3: "Act 3 Equip B", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq (N) - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip A", prob1: 22,
+      item2: "Act 3 (N) Good", prob2: 1,
+      item3: "Act 3 (N) Equip B", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq (H) - Base",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip A", prob1: 44,
+      item2: "Act 3 (H) Good", prob2: 3,
+      item3: "Act 3 (H) Equip B", prob3: 6,
+      item4: "xrs", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Radament",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2280", prob1: 3,
+      item2: "Act 3 Equip A", prob2: 15,
+      item3: "Act 3 Good", prob3: 7,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Radament (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 3,
+      item2: "Act 3 (N) Equip A", prob2: 3,
+      item3: "Act 3 (N) Good", prob3: 15,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Radament (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 0,
+      item2: "Act 3 (H) Equip A", prob2: 3,
+      item3: "Act 3 (H) Good", prob3: 0,
+      item4: "rin", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Flying Scimitar",
+      level: "",
+      picks: 1,
+      unique: 999,
+      set: 899,
+      rare: 850,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Good", prob1: 11,
+      item2: "scm", prob2: 7,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Flying Scimitar (N)",
+      level: "",
+      picks: 1,
+      unique: 999,
+      set: 899,
+      rare: 850,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Good", prob1: 11,
+      item2: "scm", prob2: 7,
+      item3: "9sm", prob3: 5,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Flying Scimitar (H)",
+      level: "",
+      picks: 1,
+      unique: 999,
+      set: 899,
+      rare: 850,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Good", prob1: 11,
+      item2: "scm", prob2: 7,
+      item3: "9sm", prob3: 5,
+      item4: "7sm", prob4: 3,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephisto",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 4,
+      item2: "Act 4 Equip A", prob2: 15,
+      item3: "Act 5 Equip A", prob3: 3,
+      item4: "Act 4 Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephisto (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 4,
+      item2: "Act 4 (N) Equip A", prob2: 15,
+      item3: "Act 5 (N) Equip A", prob3: 3,
+      item4: "Act 4 (N) Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephisto (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 4,
+      item2: "Act 4 (H) Equip A", prob2: 15,
+      item3: "Act 5 (H) Equip A", prob3: 3,
+      item4: "Act 4 (H) Good", prob4: 5,
+      item5: "ceh", prob5: 0,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephistoq",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip A", prob1: 22,
+      item2: "Act 4 Good", prob2: 1,
+      item3: "Act 5 Equip A", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephistoq (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip A", prob1: 22,
+      item2: "Act 4 (N) Good", prob2: 1,
+      item3: "Act 5 (N) Equip A", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Mephistoq (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip A", prob1: 22,
+      item2: "Act 4 (H) Good", prob2: 1,
+      item3: "Act 5 (H) Equip A", prob3: 4,
+      item4: "7b7", prob4: 1,
+      item5: "ceh", prob5: 0,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diablo",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 4,
+      item2: "Act 5 Equip A", prob2: 15,
+      item3: "Act 5 Equip C", prob3: 3,
+      item4: "Act 5 Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diablo (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 4,
+      item2: "Act 5 (N) Equip A", prob2: 15,
+      item3: "Act 5 (N) Equip C", prob3: 3,
+      item4: "Act 5 (N) Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diablo (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 4,
+      item2: "Act 5 (H) Equip A", prob2: 17,
+      item3: "Act 5 (H) Equip C", prob3: 4,
+      item4: "Act 5 (H) Good", prob4: 6,
+      item5: "bet", prob5: 0,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diabloq",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip A", prob1: 22,
+      item2: "Act 5 Good", prob2: 1,
+      item3: "Act 5 Equip C", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diabloq (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip A", prob1: 22,
+      item2: "Act 5 (N) Good", prob2: 1,
+      item3: "Act 5 (N) Equip C", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Diabloq (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip A", prob1: 28,
+      item2: "Act 5 (H) Good", prob2: 4,
+      item3: "Act 5 (H) Equip C", prob3: 8,
+      item4: "uar", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Summoner",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2280", prob1: 4,
+      item2: "Act 2 Equip C", prob2: 15,
+      item3: "Act 2 Good", prob3: 2,
+      item4: "Act 3 Equip A", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Summoner (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 4,
+      item2: "Act 2 (N) Equip C", prob2: 15,
+      item3: "Act 2 (N) Good", prob3: 6,
+      item4: "Act 3 (N) Equip A", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Summoner (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 0,
+      item2: "amu", prob2: 30,
+      item3: "Act 3 (H) Equip A", prob3: 45,
+      item4: "6ws", prob4: 1,
+      item5: "pk2", prob5: 8,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Council",
+      level: "",
+      picks: 3,
+      unique: 999,
+      set: 997,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3280", prob1: 6,
+      item2: "Act 4 Equip A", prob2: 15,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Council (N)",
+      level: "",
+      picks: 3,
+      unique: 999,
+      set: 997,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4536", prob1: 6,
+      item2: "Act 4 (N) Equip A", prob2: 15,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Council (H)",
+      level: "",
+      picks: 3,
+      unique: 999,
+      set: 997,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=5048", prob1: 6,
+      item2: "Act 4 (H) Equip A", prob2: 15,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Griswold",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Uitem C", prob1: 8,
+      item2: "Act 2 Melee A", prob2: 15,
+      item3: "bsd", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Griswold (N)",
+      level: "",
+      picks: 4,
+      unique: 999,
+      set: 999,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 8,
+      item2: "Act 1 (N) Melee B", prob2: 15,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Griswold (H)",
+      level: "",
+      picks: 4,
+      unique: 999,
+      set: 999,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 18,
+      item2: "Act 1 (H) Melee B", prob2: 23,
+      item3: "paf", prob3: 1,
+      item4: "xar", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 5 Equip A", prob2: 19,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow (N)",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 5 (N) Equip A", prob2: 19,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "xap", prob4: 1,
+      item5: "stu", prob5: 1,
+      item6: "vbt", prob6: 1,
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow (H)",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 5 (H) Equip C", prob2: 19,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "xap", prob4: 1,
+      item5: "stu", prob5: 1,
+      item6: "vbt", prob6: 1,
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Trapped Soul",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 4 Equip A", prob2: 8,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Trapped Soul (N)",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 4 (N) Equip A", prob2: 8,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Trapped Soul (H)",
+      level: "",
+      picks: 1,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 100,
+      item1: "gld", prob1: 19,
+      item2: "Act 4 (H) Equip A", prob2: 8,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Haphesto",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 5,
+      item2: "Act 4 Equip A", prob2: 19,
+      item3: "Act 5 Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Haphesto (N)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 5,
+      item2: "Act 4 (N) Equip A", prob2: 19,
+      item3: "Act 4 (N) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Haphesto (H)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 5,
+      item2: "Act 4 (H) Equip A", prob2: 19,
+      item3: "Act 4 (H) Good", prob3: 4,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Nihlathak",
+      level: "",
+      picks: 6,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 5,
+      item2: "Act 5 Equip C", prob2: 19,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Nihlathak (N)",
+      level: "",
+      picks: 6,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 5,
+      item2: "Act 5 (N) Equip C", prob2: 19,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Nihlathak (H)",
+      level: "",
+      picks: 6,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 5,
+      item2: "Act 5 (H) Equip C", prob2: 19,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "pk3", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baal",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 0,
+      item2: "Act 1 (N) Equip C", prob2: 52,
+      item3: "Act 1 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baal (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 0,
+      item2: "Act 1 (H) Equip C", prob2: 52,
+      item3: "Act 1 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baal (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 0,
+      item2: "Act 5 (H) Equip C", prob2: 52,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "fed", prob4: 0,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baalq",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip A", prob1: 25,
+      item2: "Act 1 (N) Good", prob2: 3,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baalq (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip C", prob1: 26,
+      item2: "Act 1 (H) Good", prob2: 5,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Baalq (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip C", prob1: 26,
+      item2: "Act 5 (H) Good", prob2: 5,
+      item3: "fed", prob3: 0,
+      item4: "uar", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Blood Raven",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2000", prob1: 6,
+      item2: "Act 1 Equip A", prob2: 14,
+      item3: "Act 1 Good", prob3: 5,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Blood Raven (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 6,
+      item2: "Act 1 (N) Equip A", prob2: 14,
+      item3: "Act 1 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Blood Raven (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 850,
+      rare: 850,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 11,
+      item2: "Act 1 (H) Equip A", prob2: 33,
+      item3: "6lw", prob3: 1,
+      item4: "Act 1 (H) Good", prob4: 9,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Smith",
+      level: "",
+      picks: 3,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Uitem C", prob1: 1,
+      item2: "Act 1 Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Smith (N)",
+      level: "",
+      picks: 3,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 1,
+      item2: "Act 1 (N) Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Smith (H)",
+      level: "",
+      picks: 3,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 1,
+      item2: "Act 1 (H) Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Izual",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2280", prob1: 8,
+      item2: "Act 4 Equip B", prob2: 19,
+      item3: "Act 4 Good", prob3: 8,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Izual (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3536", prob1: 8,
+      item2: "Act 4 (N) Equip B", prob2: 19,
+      item3: "Act 4 (N) Good", prob3: 8,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Izual (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4048", prob1: 8,
+      item2: "Act 4 (H) Equip B", prob2: 33,
+      item3: "7gd", prob3: 1,
+      item4: "Act 4 (H) Good", prob4: 5,
+      item5: "Act 4 (H) Equip C", prob5: 12,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super A",
+      level: 5,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip A", prob1: 14,
+      item2: "Act 1 Equip C", prob2: 2,
+      item3: "Act 1 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super B",
+      level: 7,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip B", prob1: 14,
+      item2: "Act 1 Equip C", prob2: 2,
+      item3: "Act 1 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super C",
+      level: 9,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 Equip C", prob1: 15,
+      item2: "Act 2 Equip A", prob2: 2,
+      item3: "Act 1 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super A",
+      level: 12,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip A", prob1: 15,
+      item2: "Act 1 Equip C", prob2: 7,
+      item3: "Act 2 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super B",
+      level: 15,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip B", prob1: 15,
+      item2: "Act 2 Equip C", prob2: 2,
+      item3: "Act 2 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super C",
+      level: 18,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 Equip C", prob1: 15,
+      item2: "Act 3 Equip A", prob2: 2,
+      item3: "Act 2 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super A",
+      level: 20,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip A", prob1: 15,
+      item2: "Act 2 Equip C", prob2: 7,
+      item3: "Act 3 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super B",
+      level: 22,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip B", prob1: 15,
+      item2: "Act 3 Equip C", prob2: 2,
+      item3: "Act 3 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super C",
+      level: 24,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 Equip A", prob1: 15,
+      item2: "Act 4 Equip A", prob2: 2,
+      item3: "Act 3 Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super A",
+      level: 26,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip C", prob1: 12,
+      item2: "Act 4 Equip B", prob2: 12,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super B",
+      level: 29,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip C", prob1: 12,
+      item2: "Act 4 Equip B", prob2: 12,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super C",
+      level: 32,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 Equip C", prob1: 12,
+      item2: "Act 4 Equip B", prob2: 12,
+      item3: "Act 4 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super A",
+      level: 34,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip A", prob1: 15,
+      item2: "Act 4 Equip C", prob2: 7,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super B",
+      level: 36,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip B", prob1: 15,
+      item2: "Act 5 Equip C", prob2: 2,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super C",
+      level: 38,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip C", prob1: 15,
+      item2: "Act 5 Good", prob2: 3,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super A",
+      level: 40,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip A", prob1: 14,
+      item2: "Act 1 (N) Equip C", prob2: 2,
+      item3: "Act 1 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super B",
+      level: 41,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip B", prob1: 14,
+      item2: "Act 1 (N) Equip C", prob2: 2,
+      item3: "Act 1 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super C",
+      level: 42,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (N) Equip C", prob1: 15,
+      item2: "Act 2 (N) Equip A", prob2: 2,
+      item3: "Act 1 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super A",
+      level: 44,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip A", prob1: 15,
+      item2: "Act 1 (N) Equip C", prob2: 7,
+      item3: "Act 2 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super B",
+      level: 45,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip B", prob1: 15,
+      item2: "Act 2 (N) Equip C", prob2: 2,
+      item3: "Act 2 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super C",
+      level: 46,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (N) Equip C", prob1: 15,
+      item2: "Act 3 (N) Equip A", prob2: 2,
+      item3: "Act 2 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super A",
+      level: 48,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip A", prob1: 15,
+      item2: "Act 2 (N) Equip C", prob2: 7,
+      item3: "Act 3 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super B",
+      level: 50,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip B", prob1: 15,
+      item2: "Act 3 (N) Equip C", prob2: 2,
+      item3: "Act 3 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super C",
+      level: 51,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (N) Equip A", prob1: 15,
+      item2: "Act 4 (N) Equip A", prob2: 2,
+      item3: "Act 3 (N) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super A",
+      level: 54,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip C", prob1: 12,
+      item2: "Act 4 (N) Equip B", prob2: 12,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super B",
+      level: 57,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip C", prob1: 12,
+      item2: "Act 4 (N) Equip B", prob2: 12,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super C",
+      level: 60,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (N) Equip C", prob1: 12,
+      item2: "Act 4 (N) Equip B", prob2: 12,
+      item3: "Act 4 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super A",
+      level: 62,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip A", prob1: 15,
+      item2: "Act 4 (N) Equip C", prob2: 7,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super B",
+      level: 63,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip B", prob1: 15,
+      item2: "Act 5 (N) Equip C", prob2: 2,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super C",
+      level: 66,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip C", prob1: 15,
+      item2: "Act 5 (N) Good", prob2: 3,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super A",
+      level: 67,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip A", prob1: 12,
+      item2: "Act 1 (H) Equip C", prob2: 2,
+      item3: "Act 1 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super B",
+      level: 67,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip B", prob1: 12,
+      item2: "Act 1 (H) Equip C", prob2: 2,
+      item3: "Act 1 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super C",
+      level: 68,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 1 (H) Equip C", prob1: 15,
+      item2: "Act 2 (H) Equip A", prob2: 2,
+      item3: "Act 1 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super A",
+      level: 68,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip A", prob1: 15,
+      item2: "Act 1 (H) Equip C", prob2: 7,
+      item3: "Act 2 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super B",
+      level: 69,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip B", prob1: 15,
+      item2: "Act 2 (H) Equip C", prob2: 2,
+      item3: "Act 2 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super C",
+      level: 72,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 2 (H) Equip C", prob1: 15,
+      item2: "Act 3 (H) Equip A", prob2: 2,
+      item3: "Act 2 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super A",
+      level: 73,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip A", prob1: 15,
+      item2: "Act 2 (H) Equip C", prob2: 7,
+      item3: "Act 3 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super B",
+      level: 75,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip B", prob1: 15,
+      item2: "Act 3 (H) Equip C", prob2: 2,
+      item3: "Act 3 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super C",
+      level: 78,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 3 (H) Equip A", prob1: 15,
+      item2: "Act 4 (H) Equip A", prob2: 2,
+      item3: "Act 3 (H) Good", prob3: 6,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super A",
+      level: 81,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip C", prob1: 12,
+      item2: "Act 4 (H) Equip B", prob2: 12,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super B",
+      level: 84,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip C", prob1: 12,
+      item2: "Act 4 (H) Equip B", prob2: 12,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super C",
+      level: 87,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 4 (H) Equip C", prob1: 12,
+      item2: "Act 4 (H) Equip B", prob2: 12,
+      item3: "Act 4 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super A",
+      level: 90,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip A", prob1: 15,
+      item2: "Act 4 (H) Equip C", prob2: 7,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super B",
+      level: 93,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip B", prob1: 15,
+      item2: "Act 5 (H) Equip C", prob2: 2,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super C",
+      level: 96,
+      picks: 5,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip C", prob1: 15,
+      item2: "Act 5 (H) Good", prob2: 3,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super Ax",
+      level: 0,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 Uitem A", prob1: 2,
+      item2: "Act 1 Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super Bx",
+      level: 5,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 Uitem B", prob1: 2,
+      item2: "Act 1 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 Super Cx",
+      level: 9,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 Uitem C", prob1: 2,
+      item2: "Act 1 Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super Ax",
+      level: 12,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 Uitem A", prob1: 2,
+      item2: "Act 2 Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super Bx",
+      level: 15,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 Uitem B", prob1: 2,
+      item2: "Act 2 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 Super Cx",
+      level: 18,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 Uitem C", prob1: 2,
+      item2: "Act 2 Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super Ax",
+      level: 20,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 Uitem A", prob1: 2,
+      item2: "Act 3 Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super Bx",
+      level: 22,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 Uitem B", prob1: 2,
+      item2: "Act 3 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 Super Cx",
+      level: 24,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 Uitem C", prob1: 2,
+      item2: "Act 3 Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super Ax",
+      level: 26,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 Uitem A", prob1: 2,
+      item2: "Act 4 Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super Bx",
+      level: 29,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 Uitem B", prob1: 2,
+      item2: "Act 4 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 Super Cx",
+      level: 32,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 Uitem B", prob1: 2,
+      item2: "Act 4 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super Ax",
+      level: 34,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 Uitem A", prob1: 2,
+      item2: "Act 5 Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super Bx",
+      level: 36,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 Uitem B", prob1: 2,
+      item2: "Act 5 Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 Super Cx",
+      level: 38,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 Uitem C", prob1: 2,
+      item2: "Act 5 Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super Ax",
+      level: 40,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (N) Uitem A", prob1: 2,
+      item2: "Act 1 (N) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super Bx",
+      level: 41,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (N) Uitem B", prob1: 2,
+      item2: "Act 1 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (N) Super Cx",
+      level: 42,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (N) Uitem C", prob1: 2,
+      item2: "Act 1 (N) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super Ax",
+      level: 44,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (N) Uitem A", prob1: 2,
+      item2: "Act 2 (N) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super Bx",
+      level: 45,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (N) Uitem B", prob1: 2,
+      item2: "Act 2 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (N) Super Cx",
+      level: 46,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (N) Uitem C", prob1: 2,
+      item2: "Act 2 (N) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super Ax",
+      level: 48,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (N) Uitem A", prob1: 2,
+      item2: "Act 3 (N) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super Bx",
+      level: 50,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (N) Uitem B", prob1: 2,
+      item2: "Act 3 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (N) Super Cx",
+      level: 51,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (N) Uitem C", prob1: 2,
+      item2: "Act 3 (N) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super Ax",
+      level: 54,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (N) Uitem A", prob1: 2,
+      item2: "Act 4 (N) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super Bx",
+      level: 57,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (N) Uitem B", prob1: 2,
+      item2: "Act 4 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (N) Super Cx",
+      level: 60,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (N) Uitem B", prob1: 2,
+      item2: "Act 4 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super Ax",
+      level: 62,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (N) Uitem A", prob1: 2,
+      item2: "Act 5 (N) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super Bx",
+      level: 63,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (N) Uitem B", prob1: 2,
+      item2: "Act 5 (N) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (N) Super Cx",
+      level: 66,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (N) Uitem C", prob1: 2,
+      item2: "Act 5 (N) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super Ax",
+      level: 67,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem A", prob1: 2,
+      item2: "Act 1 (H) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super Bx",
+      level: 67,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem B", prob1: 2,
+      item2: "Act 1 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 1 (H) Super Cx",
+      level: 68,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 2,
+      item2: "Act 1 (H) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super Ax",
+      level: 68,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (H) Uitem A", prob1: 2,
+      item2: "Act 2 (H) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super Bx",
+      level: 69,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (H) Uitem B", prob1: 2,
+      item2: "Act 2 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 2 (H) Super Cx",
+      level: 72,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 2 (H) Uitem C", prob1: 2,
+      item2: "Act 2 (H) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super Ax",
+      level: 73,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (H) Uitem A", prob1: 2,
+      item2: "Act 3 (H) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super Bx",
+      level: 75,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (H) Uitem B", prob1: 2,
+      item2: "Act 3 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 3 (H) Super Cx",
+      level: 78,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 3 (H) Uitem C", prob1: 2,
+      item2: "Act 3 (H) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super Ax",
+      level: 81,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (H) Uitem A", prob1: 2,
+      item2: "Act 4 (H) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super Bx",
+      level: 84,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (H) Uitem B", prob1: 2,
+      item2: "Act 4 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 4 (H) Super Cx",
+      level: 87,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 4 (H) Uitem B", prob1: 2,
+      item2: "Act 4 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super Ax",
+      level: 90,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (H) Uitem A", prob1: 2,
+      item2: "Act 5 (H) Cpot A", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super Bx",
+      level: 93,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (H) Uitem B", prob1: 2,
+      item2: "Act 5 (H) Cpot B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Act 5 (H) Super Cx",
+      level: 96,
+      picks: 5,
+      unique: 512,
+      set: 654,
+      rare: 972,
+      magic: 900,
+      noDrop: 0,
+      item1: "Act 5 (H) Uitem C", prob1: 2,
+      item2: "Act 5 (H) Cpot C", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow King",
+      level: "",
+      picks: 7,
+      unique: 850,
+      set: 983,
+      rare: 983,
+      magic: 1024,
+      noDrop: 0,
+      item1: "Act 1 Uitem C", prob1: 1,
+      item2: "Act 1 Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow King (N)",
+      level: "",
+      picks: 7,
+      unique: 850,
+      set: 983,
+      rare: 983,
+      magic: 1024,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 1,
+      item2: "Act 1 (N) Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Cow King (H)",
+      level: "",
+      picks: 7,
+      unique: 850,
+      set: 983,
+      rare: 983,
+      magic: 1024,
+      noDrop: 0,
+      item1: "Act 1 (H) Uitem C", prob1: 1,
+      item2: "Act 1 (H) Melee B", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Duriel - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Duriel (N) - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Duriel (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Duriel (H) - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Durielq - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq (N)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Durielq (N) - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Durielq (H)",
+      level: "",
+      picks: 7,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "tsc", prob1: 0,
+      item2: "Durielq (H) - Base", prob2: 2,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess Rune",
+      level: "",
+      picks: 3,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 5,
+      item1: "Runes 5", prob1: 15,
+      item2: "", prob2: "",
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess Rune (N)",
+      level: "",
+      picks: 3,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 5,
+      item1: "Runes 11", prob1: 3,
+      item2: "Runes 8", prob2: 1,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess Rune (H)",
+      level: "",
+      picks: 3,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 5,
+      item1: "Runes 11", prob1: 6,
+      item2: "Runes 15", prob2: 2,
+      item3: "Runes 16", prob3: 1,
+      item4: "Runes 13", prob4: 6,
+      item5: "Runes 14", prob5: 2,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess Item",
+      level: "",
+      picks: 5,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 19,
+      item1: "gld,mul=1280", prob1: 11,
+      item2: "Act 1 Equip C", prob2: 19,
+      item3: "Act 2 Junk", prob3: 15,
+      item4: "Act 2 Good", prob4: 3,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess Item (N)",
+      level: "",
+      picks: 5,
+      unique: "",
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 19,
+      item1: "gld,mul=1536", prob1: 11,
+      item2: "Act 1 (N) Equip C", prob2: 19,
+      item3: "Act 2 (N) Junk", prob3: 15,
+      item4: "Act 2 (N) Good", prob4: 3,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 883,
+      rare: 883,
+      magic: 800,
+      noDrop: 0,
+      item1: "Countess Item", prob1: 0,
+      item2: "Countess Rune", prob2: 5,
+      item3: "Act 2 Good", prob3: 1,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 883,
+      rare: 983,
+      magic: 800,
+      noDrop: 0,
+      item1: "Countess Item (N)", prob1: 0,
+      item2: "Countess Rune (N)", prob2: 5,
+      item3: "Act 2 (N) Good", prob3: 1,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Countess (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: 883,
+      rare: 983,
+      magic: 800,
+      noDrop: 0,
+      item1: "Countess Item (H)", prob1: 0,
+      item2: "Countess Rune (H)", prob2: 5,
+      item3: "Act 2 (H) Good", prob3: 1,
+      item4: "pk1", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },];
+
+  const treasureclassexFilename = 'global\\excel\\treasureclassex.txt';
+  const treasureclassex = D2RMM.readTsv(treasureclassexFilename);
+  treasureclassex.rows.forEach((row) => {
+    const treasureClass = row['Treasure Class'];
+    const updateData = treasureClassChanges.find(item => item.treasureClass === treasureClass);
+    if (updateData) {
+      console.log(`${updateData.treasureClass}`);
+      row['level'] = updateData.level;
+      row['Picks'] = updateData.picks;
+      row['Unique'] = updateData.unique;
+      row['Set'] = updateData.set;
+      row['Rare'] = updateData.rare;
+      row['Magic'] = updateData.magic;
+      row['NoDrop'] = updateData.noDrop;
+      row['Item1'] = updateData.item1;
+      row['Prob1'] = updateData.prob1;
+      row['Item2'] = updateData.item2;
+      row['Prob2'] = updateData.prob2;
+      row['Item3'] = updateData.item3;
+      row['Prob3'] = updateData.prob3;
+      row['Item4'] = updateData.item4;
+      row['Prob4'] = updateData.prob4;
+      row['Item5'] = updateData.item5;
+      row['Prob5'] = updateData.prob5;
+      row['Item6'] = updateData.item6;
+      row['Prob6'] = updateData.prob6;
+      row['Item7'] = updateData.item7;
+      row['Prob7'] = updateData.prob7;
+      row['Item8'] = updateData.item8;
+      row['Prob8'] = updateData.prob8;
+    }
+    else {
+      //console.log(`No match for ${treasureClass}`);
+    }
+  });
+  D2RMM.writeTsv(treasureclassexFilename, treasureclassex);
+}
+
+// Define the new updates to be made to existing treasure classes
+{
+  const treasureClassNewEntries = [
+    {
+      treasureClass: "Worm",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "gld,mul=2048", prob1: 6,
+      item2: "Act 2 Equip B", prob2: 15,
+      item3: "Act 2 Equip C", prob3: 5,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Worm (N)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "gld,mul=3049", prob1: 6,
+      item2: "Act 2 (N) Equip B", prob2: 15,
+      item3: "Act 2 (N) Equip C", prob3: 5,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Worm (H)",
+      level: "",
+      picks: 5,
+      unique: 1024,
+      set: "",
+      rare: "",
+      magic: "",
+      noDrop: 0,
+      item1: "gld,mul=4050", prob1: 6,
+      item2: "Act 2 (H) Equip B", prob2: 15,
+      item3: "Act 2 (H) Equip C", prob3: 5,
+      item4: "pk3", prob4: 1,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Ancient Barbarian",
+      level: "",
+      picks: 3,
+      unique: 1000,
+      set: 1000,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip C", prob1: 42,
+      item2: "Act 5 Good", prob2: 6,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Ancient Barbarian (N)",
+      level: "",
+      picks: 3,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip C", prob1: 42,
+      item2: "Act 5 (N) Good", prob2: 6,
+      item3: "zhb", prob3: 1,
+      item4: "xhb", prob4: 1,
+      item5: "xhg", prob5: 1,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Ancient Barbarian (H)",
+      level: "",
+      picks: 3,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip C", prob1: 42,
+      item2: "Act 5 (H) Good", prob2: 6,
+      item3: "ba5", prob3: 1,
+      item4: "uar", prob4: 1,
+      item5: "7m7", prob5: 1,
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Seal Lord",
+      level: "",
+      picks: 3,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 Equip A", prob1: 15,
+      item2: "Act 4 Equip C", prob2: 15,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Seal Lord (N)",
+      level: "",
+      picks: 3,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (N) Equip A", prob1: 15,
+      item2: "Act 4 (N) Equip C", prob2: 15,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Seal Lord (H)",
+      level: "",
+      picks: 3,
+      unique: 800,
+      set: 1024,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "Act 5 (H) Equip A", prob1: 15,
+      item2: "Act 4 (H) Equip C", prob2: 15,
+      item3: "", prob3: "",
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Shenk",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2048", prob1: 4,
+      item2: "Act 5 Equip A", prob2: 16,
+      item3: "Act 5 (H) Equip B", prob3: 7,
+      item4: "Act 5 Good", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Shenk (N)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3049", prob1: 4,
+      item2: "Act 5 (N) Equip A", prob2: 16,
+      item3: "Act 5 (N) Equip B", prob3: 7,
+      item4: "Act 5 (N) Good", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Shenk (H)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4050", prob1: 4,
+      item2: "Act 5 (H) Equip A", prob2: 16,
+      item3: "Act 5 (H) Equip B", prob3: 7,
+      item4: "Act 5 (H) Good", prob4: 4,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Pindleskin",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=2051", prob1: 4,
+      item2: "Act 5 Equip C", prob2: 22,
+      item3: "Act 5 Melee C", prob3: 9,
+      item4: "Act 5 Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Pindleskin (N)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=3052", prob1: 4,
+      item2: "Act 5 (N) Equip C", prob2: 22,
+      item3: "Act 5 (N) Melee C", prob3: 9,
+      item4: "Act 5 (N) Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Pindleskin (H)",
+      level: "",
+      picks: 4,
+      unique: 1024,
+      set: 800,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=4053", prob1: 4,
+      item2: "Act 5 (H) Equip C", prob2: 22,
+      item3: "Act 5 (H) Melee C", prob3: 9,
+      item4: "Act 5 (H) Good", prob4: 5,
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Throne Lord",
+      level: "",
+      picks: 3,
+      unique: 997,
+      set: 1000,
+      rare: 888,
+      magic: 810,
+      noDrop: 0,
+      item1: "gld,mul=2051", prob1: 4,
+      item2: "Act 5 Equip C", prob2: 8,
+      item3: "Act 5 Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Throne Lord (N)",
+      level: "",
+      picks: 3,
+      unique: 997,
+      set: 1000,
+      rare: 888,
+      magic: 810,
+      noDrop: 0,
+      item1: "gld,mul=3052", prob1: 4,
+      item2: "Act 5 (N) Equip C", prob2: 8,
+      item3: "Act 5 (N) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Throne Lord (H)",
+      level: "",
+      picks: 3,
+      unique: 997,
+      set: 1000,
+      rare: 888,
+      magic: 810,
+      noDrop: 0,
+      item1: "gld,mul=4053", prob1: 4,
+      item2: "Act 5 (H) Equip C", prob2: 8,
+      item3: "Act 5 (H) Good", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Frozenstein",
+      level: "",
+      picks: 3,
+      unique: 1000,
+      set: 1000,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=90000", prob1: 1,
+      item2: "Act 5 Equip C", prob2: 3,
+      item3: "Runes 3", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Frozenstein (N)",
+      level: "",
+      picks: 3,
+      unique: 1000,
+      set: 1000,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=90001", prob1: 1,
+      item2: "Act 5 (N) Equip C", prob2: 3,
+      item3: "Runes 6", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+
+    {
+      treasureClass: "Frozenstein (H)",
+      level: "",
+      picks: 3,
+      unique: 1000,
+      set: 1000,
+      rare: 800,
+      magic: 800,
+      noDrop: 0,
+      item1: "gld,mul=90000", prob1: 1,
+      item2: "Act 5 (H) Equip C", prob2: 3,
+      item3: "Runes 12", prob3: 3,
+      item4: "", prob4: "",
+      item5: "", prob5: "",
+      item6: "", prob6: "",
+      item7: "", prob7: "",
+      item8: "", prob8: ""
+    },
+  ];
+
+  const treasureclassexFilename = 'global\\excel\\treasureclassex.txt';
+  const treasureclassex = D2RMM.readTsv(treasureclassexFilename);
+  treasureClassNewEntries.forEach((treasureClassEntry) => {
+    treasureclassex.rows.push({
+      ...treasureClassEntry,
+      "Treasure Class": treasureClassEntry.treasureClass,
+      "level": treasureClassEntry.level,
+      "Picks": treasureClassEntry.picks,
+      "Unique": treasureClassEntry.unique,
+      "Set": treasureClassEntry.set,
+      "Rare": treasureClassEntry.rare,
+      "Magic": treasureClassEntry.magic,
+      "NoDrop": treasureClassEntry.noDrop,
+      "Item1": treasureClassEntry.item1,
+      "Prob1": treasureClassEntry.prob1,
+      "Item2": treasureClassEntry.item2,
+      "Prob2": treasureClassEntry.prob2,
+      "Item3": treasureClassEntry.item3,
+      "Prob3": treasureClassEntry.prob3,
+      "Item4": treasureClassEntry.item4,
+      "Prob4": treasureClassEntry.prob4,
+      "Item5": treasureClassEntry.item5,
+      "Prob5": treasureClassEntry.prob5,
+      "Item6": treasureClassEntry.item6,
+      "Prob6": treasureClassEntry.prob6,
+      "Item7": treasureClassEntry.item7,
+      "Prob7": treasureClassEntry.prob7,
+      "Item8": treasureClassEntry.item8,
+      "Prob8": treasureClassEntry.prob8
+    });
+  });
+  D2RMM.writeTsv(treasureclassexFilename, treasureclassex);
 }
 
 // D2SE_Enjoy-SP_Mod_1.7 implementation Uniqueitems.txt'
