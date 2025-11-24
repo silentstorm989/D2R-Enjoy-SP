@@ -1550,17 +1550,15 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
 
 //TODO Skills
 {
-  //const skillsFilename = 'global\\excel\\skills.txt';
-  //const skills = D2RMM.readTsv(skillsFilename);
-  //skills.rows.forEach((row) => {
-  //const sk = row['skill'];
-  //if (sk === 'Volcano') {
-  //console.log(row['localdelay']);
-  //row['localdelay'] = 50;
-  //console.log(row['localdelay']);
-  //}
-  //});
-  //D2RMM.writeTsv(skillsFilename, skills);
+  const skillsFilename = 'global\\excel\\skills.txt';
+  const skills = D2RMM.readTsv(skillsFilename);
+  skills.rows.forEach((row) => {
+  const sk = row['skill'];
+  if (sk === 'Volcano') {
+  row['localdelay'] = 50;
+  }
+  });
+  D2RMM.writeTsv(skillsFilename, skills);
 }
 
 // D2SE_Enjoy-SP_Mod_1.7 implementation TreasureClass.txt Changes
@@ -10217,7 +10215,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     const treasureClass = row['Treasure Class'];
     const updateData = treasureClassChanges.find(item => item.treasureClass === treasureClass);
     if (updateData) {
-      console.log(`${updateData.treasureClass}`);
       row['level'] = updateData.level;
       row['Picks'] = updateData.picks;
       row['Unique'] = updateData.unique;
@@ -10241,9 +10238,6 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       row['Prob7'] = updateData.prob7;
       row['Item8'] = updateData.item8;
       row['Prob8'] = updateData.prob8;
-    }
-    else {
-      //console.log(`No match for ${treasureClass}`);
     }
   });
   D2RMM.writeTsv(treasureclassexFilename, treasureclassex);
@@ -11953,169 +11947,4 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     }
   });
   D2RMM.writeTsv(charstatsFilename, charstats);
-}
-
-// Move Cain
-{
-  if (config["act5_options"] == "stash") {
-    D2RMM.copyFile(
-      'act5_cain_stash\\global\\tiles\\expansion\\combined_ds1.bin',
-      'global\\tiles\\expansion\\combined_ds1.bin',
-      true
-    );
-
-    D2RMM.copyFile(
-      'act5_cain_stash\\global\\tiles\\expansion\\town\\townwest.ds1',
-      'global\\tiles\\expansion\\town\\townwest.ds1',
-      true
-    );
-  }
-
-  if (config["act5_options"] == "malah") {
-    D2RMM.copyFile(
-      'act5_cain_malah\\global\\tiles\\expansion\\combined_ds1.bin',
-      'global\\tiles\\expansion\\combined_ds1.bin',
-      true
-    );
-
-    D2RMM.copyFile(
-      'act5_cain_malah\\global\\tiles\\expansion\\town\\townwest.ds1',
-      'global\\tiles\\expansion\\town\\townwest.ds1',
-      true
-    );
-  }
-
-  if (config["act5_options"] == "larzuk") {
-    D2RMM.copyFile(
-      'act5_cain_larzuk\\global\\tiles\\expansion\\combined_ds1.bin',
-      'global\\tiles\\expansion\\combined_ds1.bin',
-      true
-    );
-
-    D2RMM.copyFile(
-      'act5_cain_larzuk\\global\\tiles\\expansion\\town\\townwest.ds1',
-      'global\\tiles\\expansion\\town\\townwest.ds1',
-      true
-    );
-  }
-}
-
-// Copy files from hd to hd
-{
-  D2RMM.copyFile(
-    'hd', // <mod folder>\hd
-    'hd', // <diablo 2 folder>\mods\<modname>\<modname>.mpq\data\hd
-    true // overwrite any conflicts
-  );
-}
-
-// Modify Stash
-{
-  // modify the stash save file to make sure it has 8 tab pages
-  if (config.isExtraTabsEnabled) {
-    function getStashTabBinary(vers) {
-      // prettier-ignore
-      return [
-        // extracted from first 68 bytes of an empty stash save file (SharedStashSoftCoreV2.d2i) of D2R v1.6.80273
-        // the 9th byte seems to be related to the version of the game (e.g. 0x61, 0x62, 0x63) and a stash save
-        // that uses a *newer* version than the currently running version of the game will fail to load
-        0x55, 0xAA, 0x55, 0xAA, 0x01, 0x00, 0x00, 0x00, vers, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // 16 bytes
-        0x44, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // 16 bytes
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // 16 bytes
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // 16 bytes
-        0x4A, 0x4D, 0x00, 0x00                                                                          //  4 bytes
-      ];
-    }
-
-    function indexOf(haystack, needle, startIndex = 0) {
-      let match = 0;
-      const index = haystack.findIndex((value, index) => {
-        if (index < startIndex) {
-          return false;
-        }
-        // null matches any value
-        if (needle[match] == null || value === needle[match]) {
-          match++;
-        } else {
-          match = 0;
-        }
-        if (match === needle.length) {
-          return true;
-        }
-        return false;
-      });
-      return index === -1 ? -1 : index - needle.length + 1;
-    }
-
-    function getStashTabStartIndices(stashData) {
-      const stashTabPrefix = getStashTabBinary(null).slice(0, 10);
-      const stashTabStartIndices = [];
-      let index = -1;
-      while (true) {
-        index = indexOf(stashData, stashTabPrefix, index + 1);
-        if (index !== -1) {
-          stashTabStartIndices.push(index);
-        } else {
-          break;
-        }
-      }
-      return stashTabStartIndices;
-    }
-
-    const results = {};
-    function modSaveFile(filename) {
-      const stashData = D2RMM.readSaveFile(filename);
-      if (stashData == null) {
-        console.debug(`Skipped ${filename} because the file was not found.`);
-        results[filename] = false;
-        return;
-      }
-      // backup existing stash tab data if it doesn't exist
-      const stashDataBackup = D2RMM.readSaveFile(`${filename}.bak`);
-      if (stashDataBackup == null) {
-        D2RMM.writeSaveFile(`${filename}.bak`, stashData);
-      }
-      // find number of times prefix appears in stashData
-      const stashTabIndices = getStashTabStartIndices(stashData);
-      // find latest version code used by the save file
-      const versionCode = Math.max(
-        ...stashTabIndices.map((index) => stashData[index + 8])
-      );
-      // sanitize the data (each save files should have 3-7 shared tabs)
-      const existingTabsCount = Math.max(3, Math.min(7, stashTabIndices.length));
-      const tabsToAdd = 7 - existingTabsCount;
-      // don't modify the save file if it doesn't need it
-      if (tabsToAdd > 0) {
-        D2RMM.writeSaveFile(
-          filename,
-          [].concat.apply(
-            stashData,
-            new Array(tabsToAdd).fill(getStashTabBinary(versionCode))
-          )
-        );
-        console.debug(
-          `Added ${tabsToAdd} additional shared stash tabs to ${filename} using version code 0x${versionCode.toString(
-            16
-          )}.`
-        );
-      } else {
-        console.debug(
-          `Skipped ${filename} because it already has 7 shared stash tabs.`
-        );
-      }
-      results[filename] = true;
-    }
-
-    const SOFTCORE_SAVE_FILE = 'SharedStashSoftCoreV2.d2i';
-    const HARDCORE_SAVE_FILE = 'SharedStashHardCoreV2.d2i';
-
-    modSaveFile(SOFTCORE_SAVE_FILE);
-    modSaveFile(HARDCORE_SAVE_FILE);
-
-    if (!results[SOFTCORE_SAVE_FILE] && !results[HARDCORE_SAVE_FILE]) {
-      console.warn(
-        `Unable to enable additional shared stash tabs. Neither ${SOFTCORE_SAVE_FILE} nor ${HARDCORE_SAVE_FILE} were found.`
-      );
-    }
-  }
 }
