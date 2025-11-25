@@ -97,3 +97,8 @@ This Mod is not for people...:
 	- 4 socket: 4 perf gem + norm or sup item
 	- 5 sockets: perf.skull + unique ring + norm or sup item
 	- 6 sockets: 2 perf.skull + unique ring + norm or sup item
+	
+	***Character's Changes***
+	
+	- When creating a new character if before they had a sheild they no longer do.  Watch MrLamaSc videos.
+	- Sorceress character now starts with charged bolt. 
