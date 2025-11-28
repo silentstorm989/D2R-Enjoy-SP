@@ -97,8 +97,9 @@ This Mod is not for people...:
 	- 4 socket: 4 perf gem + norm or rare or sup item
 	- 5 sockets: perf.skull + unique ring + norm or sup item
 	- 6 sockets: 2 perf.skull + unique ring + norm or sup item
-	
-	***Character's Changes***
-	
+
+***Other Changes (Not in the original mod)***
+
 	- When creating a new character if before they had a shield they no longer do.  Watch MrLamaSc videos.
-	- Sorceress character now starts with charged bolt. 
+	- Sorceress character now starts with charged bolt.
+	- No more death damage by Bone Fetish

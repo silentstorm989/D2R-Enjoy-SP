@@ -1598,6 +1598,27 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       if (theID === 'thornhulk3') {
         row['Level'] = 27;
       }
+      if (theID === 'bonefetish1') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish2') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish3') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish4') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish5') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish6') {
+        row['deathDmg'] = "";
+      }
+      if (theID === 'bonefetish7') {
+        row['deathDmg'] = "";
+      }
     });
     D2RMM.writeTsv(monStatsFilename, monStats);
   }
