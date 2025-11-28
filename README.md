@@ -91,14 +91,14 @@ This Mod is not for people...:
 - 1 Perfect Gem + 1 Unique Item = 1 socket for that unique item
 - 1 Perfect Skull + 1 Set Item = 1 socket for that set item
 - Socketing normal and superior items:
-	- 1 socket: 1 perf gem + norm or sup item
-	- 2 socket: 2 perf gem + norm or sup item
-	- 3 socket: 3 perf gem + norm or sup item
-	- 4 socket: 4 perf gem + norm or sup item
+	- 1 socket: 1 perf gem + norm or rare or sup item
+	- 2 socket: 2 perf gem + norm or rare or sup item
+	- 3 socket: 3 perf gem + norm or rare or sup item
+	- 4 socket: 4 perf gem + norm or rare or sup item
 	- 5 sockets: perf.skull + unique ring + norm or sup item
 	- 6 sockets: 2 perf.skull + unique ring + norm or sup item
 	
 	***Character's Changes***
 	
-	- When creating a new character if before they had a sheild they no longer do.  Watch MrLamaSc videos.
+	- When creating a new character if before they had a shield they no longer do.  Watch MrLamaSc videos.
 	- Sorceress character now starts with charged bolt. 
