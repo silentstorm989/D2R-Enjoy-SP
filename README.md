@@ -100,6 +100,6 @@ This Mod is not for people...:
 
 ***Other Changes (Not in the original mod)***
 
-	- When creating a new character if before they had a shield they no longer do.  Watch MrLamaSc videos.
-	- Sorceress character now starts with charged bolt.
-	- No more death damage by Bone Fetish
+- When creating a new character if before they had a shield they no longer do.  Watch MrLamaSc videos.
+- Sorceress character now starts with charged bolt.
+- No more death damage by Bone Fetish
