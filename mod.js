@@ -208,6 +208,21 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     { name: "Overseer Skull", rarity: 1 },
     { name: "Succubus Skull", rarity: 1 },
     { name: "Bloodlord Skull", rarity: 1 },
+    { name: "Old Book", rarity: 1 },
+    { name: "Tome", rarity: 1 },
+    { name: "Codex", rarity: 1 },
+    { name: "Compendium", rarity: 1 },
+    { name: "Grimoire ", rarity: 1 },
+    { name: "Burnt Text", rarity: 1 },
+    { name: "Dark Tome", rarity: 1 },
+    { name: "Dark Codex", rarity: 1 },
+    { name: "Possessed Compendium", rarity: 1 },
+    { name: "Possessed Grimoire ", rarity: 1 },
+    { name: "Forgotten Volume", rarity: 1 },
+    { name: "Occult Tome", rarity: 1 },
+    { name: "Occult Codex", rarity: 1 },
+    { name: "Blasphemous Compendium", rarity: 1 },
+    { name: "Blasphemous Grimoire ", rarity: 1 },
   ];
 
   function findRarityByName(name) {
@@ -1754,6 +1769,19 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     { name: "McAuley's Riprap", rarity: 4, lvlreq: 20, },
     { name: "McAuley's Taboo", rarity: 4, lvlreq: 28, },
     { name: "McAuley's Superstition", rarity: 4, lvlreq: 25, },
+    { name: "Warlord's Conquest", rarity: 4, lvlreq: 1, },
+    { name: "Warlord's Lust", rarity: 4, lvlreq: 1, },
+    { name: "Warlord's Mantle", rarity: 4, lvlreq: 1, },
+    { name: "Warlord's Crushers", rarity: 4, lvlreq: 1, },
+    { name: "Warlord's Authority", rarity: 4, lvlreq: 1, },
+    { name: "Bane's Oathmaker", rarity: 4, lvlreq: 8, },
+    { name: "Bane's Wraithskin", rarity: 4, lvlreq: 8, },
+    { name: "Bane's Authority", rarity: 4, lvlreq: 8, },
+    { name: "Horazon's Countenance", rarity: 4, lvlreq: 62, },
+    { name: "Horazon's Dominion", rarity: 4, lvlreq: 55, },
+    { name: "Horazon's Hold", rarity: 4, lvlreq: 48, },
+    { name: "Horazon's Legacy", rarity: 4, lvlreq: 67, },
+    { name: "Horazon's Secrets", rarity: 4, lvlreq: 57, },
   ];
 
   const setItemsFilename = 'global\\excel\\setitems.txt';
@@ -1799,10 +1827,10 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
   const skillsFilename = 'global\\excel\\skills.txt';
   const skills = D2RMM.readTsv(skillsFilename);
   skills.rows.forEach((row) => {
-  const sk = row['skill'];
-  if (sk === 'Volcano') {
-  row['localdelay'] = 50;
-  }
+    const sk = row['skill'];
+    if (sk === 'Volcano') {
+      row['localdelay'] = 50;
+    }
   });
   D2RMM.writeTsv(skillsFilename, skills);
 }
@@ -11226,7 +11254,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     { name: "Tomb Reaver", rarity: 1, nolimit: 1, level: 70, lvlReq: 70 },
     { name: "Deaths's Web", rarity: 1, nolimit: 1, level: 66, lvlReq: 66 },
     { name: "Nature's Peace", rarity: 9, nolimit: 1, level: 58, lvlReq: 58 },
-    { name: "Azurewrath", rarity: 1, nolimit: 1, level: 68, lvlReq: 68 },
+    { name: "Azurewrath", rarity: 1, nolimit: 1, level: 18, lvlReq: 13 },
     { name: "Seraph's Hymn", rarity: 12, nolimit: 1, level: 66, lvlReq: 65 },
     { name: "Zakarum's Salvation", rarity: 1, nolimit: 1, level: '', lvlReq: '' },
     { name: "Fleshripper", rarity: 1, nolimit: 1, level: 66, lvlReq: 66 },
@@ -11325,6 +11353,42 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     { name: "Rainbow Facet", rarity: 1, nolimit: 1, level: 50, lvlReq: 49 },
     { name: "Rainbow Facet", rarity: 1, nolimit: 1, level: 50, lvlReq: 49 },
     { name: "Hellfire Torch", rarity: 1, nolimit: 1, level: 110, lvlReq: 75 },
+    { name: "Cold Rupture", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Flame Rift", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crack of the Heavens", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Rotting Fissure", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Bone Break", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Black Cleft", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Ars Al'Diablolos", rarity: 1, nolimit: '', level: 85, lvlReq: 80 },
+    { name: "Ars Tor'Baalos", rarity: 1, nolimit: '', level: 85, lvlReq: 73 },
+    { name: "Ars Dul'Mephistos", rarity: 1, nolimit: '', level: 85, lvlReq: 78 },
+    { name: "Measured Wrath", rarity: 3, nolimit: '', level: 58, lvlReq: 52 },
+    { name: "Dreadfang", rarity: 2, nolimit: '', level: 69, lvlReq: 61 },
+    { name: "Wraithstep", rarity: 2, nolimit: '', level: 73, lvlReq: 67 },
+    { name: "Bloodpact Shard", rarity: 2, nolimit: '', level: 73, lvlReq: 67 },
+    { name: "Sling", rarity: 1, nolimit: '', level: 58, lvlReq: 50 },
+    { name: "Opalvein", rarity: 1, nolimit: '', level: 58, lvlReq: 50 },
+    { name: "Entropy Locket", rarity: 1, nolimit: '', level: 60, lvlReq: 54 },
+    { name: "Gheed's Wager", rarity: 1, nolimit: '', level: 79, lvlReq: 71 },
+    { name: "Unique Warlock Helm", rarity: 2, nolimit: '', level: 55, lvlReq: 50 },
+    { name: "Defender's Bile", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "Guardian's Thunder", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "Protector's Frost", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "Defender's Fire", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "Protector's Stone", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "Guardian's Light", rarity: 1, nolimit: '', level: 110, lvlReq: 75 },
+    { name: "PreCrafted Cold Rupture", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Cold Rupture", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "PreCrafted Flame Rift", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "PreCrafted Crack of the Heavens", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "PreCrafted Rotting Fissure", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "PreCrafted Bone Break", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "PreCrafted Black Cleft", rarity: 2, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Flame Rift", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Crack of the Heavens", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Rotting Fissure", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Bone Break", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
+    { name: "Crafted Black Cleft", rarity: 1, nolimit: '', level: 69, lvlReq: 75 },
   ];
 
   function findRarityByName(name) {
