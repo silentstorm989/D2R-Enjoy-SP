@@ -253,265 +253,385 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Thul Runes + 1 Chipped Topaz -> Amn Rune",
-      "new_description": "3 Thul Runes -> Amn Rune",
+      "description": "3 Thul Runes -> Amn Rune",
       "numinputs": "3",
       "input1": "\"r10,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Amn Runes + 1 Chipped Amethyst -> Sol Rune",
-      "new_description": "3 Amn Runes -> Sol Rune",
+      "description": "3 Amn Runes -> Sol Rune",
       "numinputs": "3",
       "input1": "\"r11,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Sol Runes + 1 Chipped Sapphire -> Shael Rune",
-      "new_description": "3 Sol Runes -> Shael Rune",
+      "description": "3 Sol Runes -> Shael Rune",
       "numinputs": "3",
       "input1": "\"r12,qty=3\"",
       "input2": "",
       "input3": "",
-      "input4": ""
+      "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Shael Runes + 1 Chipped Ruby -> Dol Rune",
-      "new_description": "3 Shael Runes -> Dol Rune",
+      "description": "3 Shael Runes -> Dol Rune",
       "numinputs": "3",
       "input1": "\"r13,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Dol Runes + 1 Chipped Emerald -> Hel Rune",
-      "new_description": "3 Dol Runes -> Hel Rune",
+      "description": "3 Dol Runes -> Hel Rune",
       "numinputs": "3",
       "input1": "\"r14,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Hel Runes + 1 Chipped Diamond -> Io Rune",
-      "new_description": "3 Hel Runes -> Io Rune",
+      "description": "3 Hel Runes -> Io Rune",
       "numinputs": "3",
       "input1": "\"r15,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Io Runes + 1 Flawed Topaz -> Lum Rune",
-      "new_description": "3 Io Runes -> Lum Rune",
+      "description": "3 Io Runes -> Lum Rune",
       "numinputs": "3",
       "input1": "\"r16,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Lum Runes + 1 Flawed Amethyst -> Ko Rune",
-      "new_description": "3 Lum Runes -> Ko Rune",
+      "description": "3 Lum Runes -> Ko Rune",
       "numinputs": "3",
       "input1": "\"r17,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Ko Runes + 1 Flawed Sapphire -> Fal Rune",
-      "new_description": "3 Ko Runes -> Fal Rune",
+      "description": "3 Ko Runes -> Fal Rune",
       "numinputs": "3",
       "input1": "\"r18,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Fal Runes + 1 Flawed Ruby -> Lem Rune",
-      "new_description": "3 Fal Runes -> Lem Rune",
+      "description": "3 Fal Runes -> Lem Rune",
       "numinputs": "3",
       "input1": "\"r19,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "3 Lem Runes + 1 Flawed Emerald -> Pul Rune",
-      "new_description": "3 Lem Runes -> Pul Rune",
+      "description": "3 Lem Runes -> Pul Rune",
       "numinputs": "3",
       "input1": "\"r20,qty=3\"",
       "input2": "",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Pul Runes + 1 Flawed Diamond -> Um Rune",
-      "new_description": "2 Pul Runes + 1 Jewel -> Um Rune",
+      "description": "2 Pul Runes + 1 Jewel -> Um Rune",
       "numinputs": "3",
       "input1": "\"r21,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Um Runes + 1 Standard Topaz -> Mal Rune",
-      "new_description": "2 Um Runes + 1 Jewel -> Mal Rune",
+      "description": "2 Um Runes + 1 Jewel -> Mal Rune",
       "numinputs": "3",
       "input1": "\"r22,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Mal Runes + 1 Standard Amethyst -> Ist Rune",
-      "new_description": "2 Mal Runes + 1 Jewel -> Ist Rune",
+      "description": "2 Mal Runes + 1 Jewel -> Ist Rune",
       "numinputs": "3",
       "input1": "\"r23,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Ist Runes + 1 Standard Sapphire -> Gul Rune",
-      "new_description": "2 Ist Runes + 1 Jewel -> Gul Rune",
+      "description": "2 Ist Runes + 1 Jewel -> Gul Rune",
       "numinputs": "3",
       "input1": "\"r24,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Gul Runes + 1 Standard Ruby -> Vex Rune",
-      "new_description": "2 Gul Runes + 1 Jewel -> Vex Rune",
+      "description": "2 Gul Runes + 1 Jewel -> Vex Rune",
       "numinputs": "3",
       "input1": "\"r25,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Vex Runes + 1 Standard Emerald -> Ohm Rune",
-      "new_description": "2 Vex Runes + 1 Jewel -> Ohm Rune",
+      "description": "2 Vex Runes + 1 Jewel -> Ohm Rune",
       "numinputs": "3",
       "input1": "\"r26,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Ohm Runes + 1 Standard Diamond -> Lo Rune",
-      "new_description": "2 Ohm Runes + 1 Jewel -> Lo Rune",
+      "description": "2 Ohm Runes + 1 Jewel -> Lo Rune",
       "numinputs": "3",
       "input1": "\"r27,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Lo Runes + 1 Flawless Topaz -> Sur Rune",
-      "new_description": "2 Lo Runes +1 Jewel -> Sur Rune",
+      "description": "2 Lo Runes +1 Jewel -> Sur Rune",
       "numinputs": "3",
       "input1": "\"r28,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Sur Runes + 1 Flawless Amethyst -> Ber Rune",
-      "new_description": "2 Sur Runes + 1 Jewel -> Ber Rune",
+      "description": "2 Sur Runes + 1 Jewel -> Ber Rune",
       "numinputs": "3",
       "input1": "\"r29,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Ber Runes + 1 Flawless Sapphire -> Jah Rune",
-      "new_description": "2 Ber Runes + 1 Jewel -> Jah Rune",
+      "description": "2 Ber Runes + 1 Jewel -> Jah Rune",
       "numinputs": "3",
       "input1": "\"r30,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Jah Runes + 1 Flawless Ruby -> Cham Rune",
-      "new_description": "2 Jah Runes + 1 Jewel -> Cham Rune",
+      "description": "2 Jah Runes + 1 Jewel -> Cham Rune",
       "numinputs": "3",
       "input1": "\"r31,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "2 Cham Runes + 1 Flawless Emerald -> Zod Rune",
-      "new_description": "2 Cham Runes + 1 Jewel -> Zod Rune",
+      "description": "2 Cham Runes + 1 Jewel -> Zod Rune",
       "numinputs": "3",
       "input1": "\"r32,qty=2\"",
       "input2": "jew",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     },
     {
       "enabled": 1,
       "version": 100,
       "old_description": "1 Twisted Essence of Suffering + 1 Charged Essence of Hatred + 1 Burning Essence of Terror + 1 Festering Essence of Destruction -> Token of Absolution",
-      "new_description": "1 Scroll of Town Portal + Scroll of Identify -> Token of Absolution",
+      "description": "1 Scroll of Town Portal + Scroll of Identify -> Token of Absolution",
       "numinputs": "2",
       "input1": "tsc",
       "input2": "isc",
       "input3": "",
       "input4": "",
+      "useitem": "useitem",
+      "mod1": "sock",
+      "mod1Min": 0,
+      "mod1Max": 0,
+      "eol": 0
     }];
 
   const cubemainFilename = 'global\\excel\\cubemain.txt';
@@ -520,7 +640,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     const theName = row['description'];
     const change = runeChangesExtra.find(rc => rc.old_description === theName);
     if (change) {
-      row['description'] = change.new_description;
+      row['description'] = change.description;
       row['numinputs'] = change.numinputs;
       row['input 1'] = change.input1;
       row['input 2'] = change.input2;
@@ -548,6 +668,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -562,6 +683,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -576,6 +698,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -590,6 +713,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -604,6 +728,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -618,6 +743,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "4",
       "mod1Max": "4",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -632,6 +758,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -646,6 +773,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -660,6 +788,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -674,6 +803,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "4",
       "mod1Max": "4",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -688,6 +818,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -702,6 +833,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -716,6 +848,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -730,6 +863,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -744,6 +878,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -758,6 +893,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -772,6 +908,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -786,6 +923,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -800,6 +938,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -814,6 +953,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "4",
       "mod1Max": "4",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -828,6 +968,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -842,6 +983,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -856,6 +998,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -870,6 +1013,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "4",
       "mod1Max": "4",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -884,6 +1028,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -898,6 +1043,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -912,6 +1058,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -940,6 +1087,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "5",
       "mod1Max": "5",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -954,6 +1102,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "6",
       "mod1Max": "6",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -968,6 +1117,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "1",
       "mod1Max": "1",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -982,6 +1132,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "2",
       "mod1Max": "2",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -996,6 +1147,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "3",
       "mod1Max": "3",
+      "eol": 0
     },
     {
       "enabled": 1,
@@ -1010,6 +1162,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
       "mod1": "sock",
       "mod1Min": "4",
       "mod1Max": "4",
+      "eol": 0
     },
     {
       "enabled": 1,
