@@ -1953,15 +1953,15 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
 // D2SE_Enjoy-SP_Mod_1.7 implementation Shrines.txt'
 {
   const ShrineDuration = [
-    { Name: "Armor Shrine", Duration: 4800 },
-    { Name: "Combat Shrine", Duration: 4800 },
-    { Name: "Resist Fire Shrine", Duration: 4800 },
-    { Name: "Resist Cold Shrine", Duration: 4800 },
-    { Name: "Resist Lightning Shrine", Duration: 4800 },
-    { Name: "Resist Poison Shrine", Duration: 4800 },
-    { Name: "Skill Shrine", Duration: 4800 },
-    { Name: "Mana Recharge Shrine", Duration: 4800 },
-    { Name: "Experience Shrine", Duration: 4600 },
+    { Name: "Armor Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Combat Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Resist Fire Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Resist Cold Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Resist Lightning Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Resist Poison Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Skill Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Mana Recharge Shrine", Duration: 4800, Minutes: 2 },
+    { Name: "Experience Shrine", Duration: 4800, Minutes: 2 },
   ];
   const shrinesFilename = 'global\\excel\\shrines.txt';
   const shrines = D2RMM.readTsv(shrinesFilename);
@@ -1970,6 +1970,7 @@ if (D2RMM.getVersion == null || D2RMM.getVersion() < 1.6) {
     const theShrineDuration = ShrineDuration.find(sd => sd.Name === theName);
     if (theShrineDuration) {
       row['Duration in frames'] = theShrineDuration.Duration;
+	  row['reset time in minutes'] = theShrineDuration.Minutes;
     }
   });
   D2RMM.writeTsv(shrinesFilename, shrines);
